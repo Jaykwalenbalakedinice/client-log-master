@@ -15,7 +15,6 @@ class Client extends Model
         'emailAddress',
         'region',
         'province',
-        'city',
         'municipality',
         'barangay',
         'clientType',

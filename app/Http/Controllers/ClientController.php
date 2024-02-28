@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Carbon\Carbon;
-
+use DB;
 class ClientController extends Controller
 {
     public function applicationForm()
     {
-        return view('client.applicationForm');
+        $fd = DB::table('tbl_fd')->where('office_level_id', 1)->get();
+        return view('client.applicationForm', compact('fd'));
     }
 
     public function clientLogs()
@@ -26,9 +27,8 @@ class ClientController extends Controller
             'emailAddress' => 'required',
             'region' => 'required',
             'province' => 'required',
-            'city' => 'required',
-            'municipalitiy' => 'required',
-            'Barangay' => 'required',
+            'municipality' => 'required',
+            'barangay' => 'required',
             'clientType' => 'required',
             'firstName' => 'required',
             'middleName' => 'nullable',

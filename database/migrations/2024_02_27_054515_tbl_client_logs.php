@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('emailAddress');
             $table->string('region');
             $table->string('province');
-            $table->string('city');
             $table->string('municipality');
             $table->string('barangay');
             $table->string('clientType');

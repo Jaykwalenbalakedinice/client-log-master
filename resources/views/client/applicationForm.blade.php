@@ -13,7 +13,7 @@
     </script>
 
     <style>
-        .form-control {
+        .form-control, .form-select {
             background-color: #ebecee;
             border-color:
         }
@@ -168,73 +168,36 @@
                             onblur="restorePlaceholder(this)" required autocomplete="on">
                     </div>
 
-                    {{-- <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="homeAddress"><strong>Home Address</strong> </label>
-                        <input type="text" name="homeAddress" id="homeAddress" maxlength="100" class="form-control"
-                            placeholder="Brgy. Sto Domingo Cainta Rizal" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on" required>
-                    </div> --}}
-
-                    <form id="addressForm">
-                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                            <label class="label" for="region"><strong>Region</strong></label>
-                            <select id="region" class="form-select region" aria-label="Default select example"
-                                onchange="loadProvince()">
-                                <option selected value="">Select Region</option>
-                                {{-- <option value="Ilocos Region">Region I - Ilocos Region</option>
-                                <option value="Cagayan Valley">Region II - Cagayan Valley</option>
-                                <option value="Central Luzon">Region III - Central Luzon</option>
-                                <option value="CALABARZON">Region IV-A - CALABARZON</option>
-                                <option value="MIMAROPA">Region IV-B - MIMAROPA</option>
-                                <option value="Bicol Region">Region V - Bicol Region</option>
-                                <option value="Western Visayas">Region VI - Western Visayas</option>
-                                <option value="Central Visayas">Region VII - Central Visayas</option>
-                                <option value="Eastern Visayas">Region VIII - Eastern Visayas</option>
-                                <option value="Zamboanga Peninsula">Region XI - Zamboanga Peninsula</option>
-                                <option value="Northern Mindanao">Region X - Northern Mindanao</option>
-                                <option value="Davao Region">Region XI - Davao Region</option>
-                                <option value="SOCCSKSARGEN">Region XII - SOCCSKSARGEN</option>
-                                <option value="Caraga">Region XIII - Caraga</option>
-                                <option value="National Capital Region">NCR - National Capital Region</option>
-                                <option value="Cordillera Administrative Region">CAR - Cordillera Administrative Region
-                                </option>
-                                <option value="Bangsamoro Autonomous Region in Muslim Mindanao">BARMM - Bangsamoro
-                                    Autonomous Region in Muslim Mindanao</option> --}}
-
-                            </select>
-                        </div>
-                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4 select_option">
-                            <label class="label" for="province"><strong>Province</strong></label>
-                            <select id="province" class="form-select province" aria-label="Default select example"
-                                onchange="loadCity()">
-                                <option selected value="">Select Province</option>
-                                <!-- Municipality options will be populated dynamically -->
-                            </select>
-                        </div>
-                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                            <label class="label" for="city"><strong>City</strong></label>
-                            <select id="city" class="form-select city" aria-label="Default select example"
-                                onchange="loadMunicipality()">
-                                <option selected value="">Select City</option>
-                                <!-- Municipality options will be populated dynamically -->
-                            </select>
-                        </div>
-                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                            <label class="label" for="municipality"><strong>Municipality</strong></label>
-                            <select id="municipality" class="form-select municipality"
-                                aria-label="Default select example" onchange="loadBarangay()">
-                                <option selected value="">Select Municipality</option>
-                                <!-- Municipality options will be populated dynamically -->
-                            </select>
-                        </div>
-                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                            <label class="label" for="barangay"><strong>Barangay</strong></label>
-                            <select id="barangay" class="form-select barangay" aria-label="Default select example">
-                                <option selected value="">Select Barangay</option>
-                                <!-- Barangay options will be populated dynamically -->
-                            </select>
-                        </div>
-                    </form>
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                        <label class="label" for="region"><strong>Region</strong></label>
+                        <select id="region" name="region" class="form-select region" aria-label="Default select example"
+                            onchange="loadProvince()">
+                            {{-- <option selected value="">Select Region</option> --}}
+                        </select>
+                    </div>
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4 select_option">
+                        <label class="label" for="province"><strong>Province</strong></label>
+                        <select id="province" name="province" class="form-select province" aria-label="Default select example"
+                            onchange="loadMunicipality()">
+                            <option selected value="">Select Province</option>
+                            <!-- Municipality options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                        <label class="label" for="municipality"><strong>Municipality</strong></label>
+                        <select id="municipality" name="municipality" class="form-select municipality"
+                            aria-label="Default select example" onchange="loadBarangay()">
+                            <option selected value="">Select Municipality</option>
+                            <!-- Municipality options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                        <label class="label" for="barangay"><strong>Barangay</strong></label>
+                        <select id="barangay" name="barangay" class="form-select barangay" aria-label="Default select example">
+                            <option selected value="">Select Barangay</option>
+                            <!-- Barangay options will be populated dynamically -->
+                        </select>
+                    </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="clientType"> <strong>Client Type</strong> </label>
@@ -301,9 +264,10 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="officeConcerned"> <strong>Office Concerned</strong> </label>
                         <select class="form-select" id="officeConcerned" name="officeConcerned">
-                            <option value="ICT Unit">ICT Unit</option>
-                            <option value="Multimedia">Multimedia</option>
-                            <option value="Legal Unit">Legal Unit</option>
+                            <option value="">Please Select</option>
+                            @foreach ($fd as $item)
+                                <option value="{{$item->division_short_name}}">{{$item->division_name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -316,11 +280,14 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="virtualIdNumber"> <strong>Virtual ID Number</strong> </label>
-                        <input type="id" name="virtualIdNumber" id="virtualIdNumber" value=""
+                        <input type="number" name="virtualIdNumber" id="virtualIdNumber" value=""
                             maxlength="50" class="form-control" placeholder="ID Number"
                             onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="on"
                             required>
                     </div>
+                    
+                    {{-- Modal --}}
+                    @include('client.modal')
             </form>
 
             <div class="container-responsive">
@@ -329,55 +296,7 @@
                     <div class="col-6 col-md-8 mt-3 mt-sm-4">
                         <button type="button" class="btn btn-active bg-dark text-white" style="font-weight: bold;"
                             data-bs-toggle="modal" data-bs-target="staticBackdrop" id="submitNga">Submit</button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel"
-                                            style="padding-left: 115px;">Information Confirmation
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p><strong>Email Address:</strong> <span id="previewEmailAddress"></span></p>
-                                        <p><strong>Region:</strong> <span id="previewRegion"></span></p>
-                                        <p><strong>Province:</strong> <span id="previewProvince"></span></p>
-                                        <p><strong>City:</strong> <span id="previewCity"></span></p>
-                                        <p><strong>Municipality:</strong> <span id="previewMunicipality"></span></p>
-                                        <p><strong>Barangay:</strong> <span id="previewBarangay"></span></p>
-                                        <p><strong>Client Type:</strong> <span id="previewClientType"></span></p>
-                                        <p><strong>First Name:</strong> <span id="previewFirstName"></span></p>
-                                        <p><strong>Middle Name:</strong> <span id="previewMiddleName"></span></p>
-                                        <p><strong>Last Name:</strong> <span id="previewLastName"></span></p>
-                                        <p><strong>Gender:</strong> <span id="previewGender"></span></p>
-                                        <p><strong>Birth Date:</strong> <span id="previewBirthDate"></span></p>
-                                        <p><strong>Mobile Number:</strong> <span id="previewContact"></span></p>
-                                        <p><strong>Division of Residence:</strong> <span
-                                                id="previewDivisionOfResidence"></span></p>
-                                        <p><strong>Office Concerned:</strong> <span id="previewOfficeConcerned"></span>
-                                        </p>
-                                        <p><strong>Purpose:</strong> <span id="previewPurposeId"></span></p>
-                                        <p><strong>Virtual Id Number:</strong> <span
-                                                id="previewVirtualIdNumber"></span></p>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Edit</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            id="confirmSubmit">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-
 
                     <div class="col-6 col-md-4 mt-3 mt-sm-4">
                         <button type="button" class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
@@ -420,7 +339,6 @@
             var emailAddress = document.getElementById('emailAddress').value;
             var region = document.getElementById('region').value;
             var province = document.getElementById('province').value;
-            var city = document.getElementById('city').value;
             var municipality = document.getElementById('municipality').value;
             var barangay = document.getElementById('barangay').value;
             var clientType = document.getElementById('clientType').value;
@@ -438,7 +356,7 @@
             event.preventDefault(); // This line ensures the form submission is halted
 
             // Check if any required field is empty
-            if (!emailAddress || !homeAddress || !clientType || !firstName || !lastName || !gender || !birthDate ||
+            if (!emailAddress || !region || !province || !municipality || !barangay || !clientType || !firstName || !lastName || !gender || !birthDate ||
                 !contact || !divisionOfResidence || !officeConcerned || !purposeId || !virtualIdNumber) {
                 // Display an alert to the user indicating that all required fields must be filled
                 alert('Please fill all required fields.');
@@ -448,7 +366,6 @@
                 document.getElementById('previewEmailAddress').innerText = emailAddress;
                 document.getElementById('previewRegion').innerText = region;
                 document.getElementById('previewProvince').innerText = province;
-                document.getElementById('previewCity').innerText = city;
                 document.getElementById('previewMunicipality').innerText = municipality;
                 document.getElementById('previewBarangay').innerText = barangay;
                 document.getElementById('previewClientType').innerText = clientType;
@@ -475,56 +392,137 @@
         // Script for API
 
         var config = {
-            cUrl: 'https://psgc-api.wareneutron.com/api/region'
+            cUrl: 'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json'
         }
 
-        var regionSelect = document.querySelector('.region');
-            // provinceSelect = document.querySelector('.province'),
-            // citySelect = document.querySelector('.city'),
-            // municipalitySelect = document.querySelector('.municipality'),
-            // barangaySelect = document.querySelector('.barangay')
+        var apiEndPoint =
+            'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json';
+
+        var regionSelect = document.querySelector('#region');
+        provinceSelect = document.querySelector('#province'),
+            citySelect = document.querySelector('#city'),
+            municipalitySelect = document.querySelector('#municipality'),
+            barangaySelect = document.querySelector('#barangay')
 
         function loadRegions() {
-
             let apiEndPoint = config.cUrl;
 
             fetch(apiEndPoint)
                 .then(Response => Response.json())
                 .then(data => {
-                    // console.log(data);
                     regionSelect.innerHTML = '<option value="">Select Region</option>';
 
-                    data.data[0].region.forEach(region => {
+                    // Iterate over the regions in the data
+                    for (let regionCode in data) {
+                        const region = data[regionCode];
                         const option = document.createElement('option');
-                        option.value = region.code;
-                        option.textContent = region.name;
+                        option.value = regionCode;
+                        option.textContent = region.region_name;
                         regionSelect.appendChild(option);
-                    });
+                    }
 
                     regionSelect.disabled = false;
                 })
                 .catch(error => console.error('Error loading regions:', error));
-
-            // Disable select elements
-            provinceSelect.disabled = true
-            citySelect.disabled = true
-            municipalitySelect.disabled = true
-            barangaySelect.disabled = true
-
-            //Disable pointers events
-            provinceSelect.style.pointerEvents = 'none'
-            citySelect.style.pointerEvents = 'none'
-            municipalitySelect.style.pointerEvents = 'none'
-            barangaySelect.style.pointerEvents = 'none'
         }
+
 
         function loadProvince() {
+            // Get the selected region code
             const selectedRegionCode = regionSelect.value;
-            console.log(selectedRegionCode);
+
+            fetch(apiEndPoint)
+                .then(response => response.json())
+                .then(data => {
+                    const selectedRegion = data[selectedRegionCode];
+
+                    if (selectedRegion && selectedRegion.province_list) {
+                        provinceSelect.innerHTML =
+                            '<option value="">Select Province</option>'; // Clear existing province options
+
+                        // Iterate over the provinces in the selected region
+                        for (let provinceName in selectedRegion.province_list) {
+                            const option = document.createElement('option');
+                            option.value = provinceName;
+                            option.textContent = provinceName;
+                            provinceSelect.appendChild(option);
+                        }
+
+                        provinceSelect.disabled = false;
+                    } else {
+                        console.error('Invalid response format:', data);
+                    }
+                })
+                .catch(error => console.error('Error loading provinces:', error));
+        }
+
+        function loadMunicipality() {
+            // Get the selected region and province codes
+            const selectedRegionCode = regionSelect.value;
+            const selectedProvinceName = provinceSelect.value;
+
+            fetch(apiEndPoint)
+                .then(response => response.json())
+                .then(data => {
+                    const selectedRegion = data[selectedRegionCode];
+                    const selectedProvince = selectedRegion.province_list[selectedProvinceName];
+
+                    if (selectedProvince && selectedProvince.municipality_list) {
+                        municipalitySelect.innerHTML =
+                        '<option value="">Select Municipality</option>'; // Clear existing municipality options
+
+                        // Iterate over the municipalities in the selected province
+                        for (let municipalityName in selectedProvince.municipality_list) {
+                            const option = document.createElement('option');
+                            option.value = municipalityName;
+                            option.textContent = municipalityName;
+                            municipalitySelect.appendChild(option);
+                        }
+
+                        municipalitySelect.disabled = false;
+                    } else {
+                        console.error('Invalid response format:', data);
+                    }
+                })
+                .catch(error => console.error('Error loading municipalities:', error));
         }
 
 
-        window.onload = loadRegions;
+        function loadBarangay() {
+            // Get the selected region, province, and city codes
+            const selectedRegionCode = regionSelect.value;
+            const selectedProvinceName = provinceSelect.value;
+            const selectedMunicipalityName = municipalitySelect.value;
+
+            fetch(apiEndPoint)
+                .then(response => response.json())
+                .then(data => {
+                    const selectedRegion = data[selectedRegionCode];
+                    const selectedProvince = selectedRegion.province_list[selectedProvinceName];
+                    const selectedMunicipality = selectedProvince.municipality_list[selectedMunicipalityName];
+
+                    if (selectedMunicipality && selectedMunicipality.barangay_list) {
+                        barangaySelect.innerHTML =
+                            '<option value="">Select Barangay</option>'; // Clear existing barangay options
+
+                        // Iterate over the barangays in the selected city
+                        for (let barangayName of selectedMunicipality.barangay_list) {
+                            const option = document.createElement('option');
+                            option.value = barangayName;
+                            option.textContent = barangayName;
+                            barangaySelect.appendChild(option);
+                        }
+
+                        barangaySelect.disabled = false;
+                    } else {
+                        console.error('Invalid response format:', data);
+                    }
+                })
+                .catch(error => console.error('Error loading barangays:', error));
+        }
+
+
+        window.onload = loadRegions
     </script>
 </body>
 
