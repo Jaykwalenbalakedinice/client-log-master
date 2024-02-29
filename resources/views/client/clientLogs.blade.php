@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{{ asset('resources/bootstrap5.3.2/bootstrap.min.css') }}" rel="stylesheet">
     <title>Client Logs</title>
 
     <style>
@@ -39,12 +38,17 @@
 </head>
 
 <body class="bg-custom" style="background-color: #BB8E89">
-    <div id=successMessage class="overlay">
+
+    @include('client.SuccessModal')
+    <div id="successMessage" class="overlay">
         @if (session()->has('success'))
-            <div class="alert alert-success" role="alert">
-                <i class="fa-solid fa-circle-check pr-3"></i>
-                {{ session('success') }}
-            </div>
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script>
+                $(window).on('load', function() {
+                    $('#staticBackdrop').modal('show');
+                });
+            </script>
         @endif
     </div>
     <h1 class="text-center text-dark p2 text-uppercase mt-4" style="font-weight: bolder; font-family: -apple-system;">
@@ -55,11 +59,13 @@
 
             <div class="row mb-3">
                 <div class="col-6 col-md-3 col-lg-2">
-                    <button class="btn btn-dark" style="padding-left: 6px; padding-right: 6px;"><a href="{{ route('client.applicationForm') }}"
-                            style="text-decoration: none; color: white; font-size: 13px;">Create New
-                            Application</a></button>
+                    <a href="{{ route('client.applicationForm') }}"
+                        style="text-decoration: none; color: white; font-size: 13px;">
+                        <button class="btn btn-dark"><strong>New
+                            Application</strong> 
+                        </button>
+                    </a>
                 </div>
-
                 <div class="col-6 col-md-4 col-lg-4">
                     <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
                         placeholder="Enter Virtual ID">
@@ -109,6 +115,8 @@
         </div>
 
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
@@ -133,22 +141,6 @@
                 });
             });
         });
-
-        // Check if the success message exists
-        if (document.getElementById('successMessage')) {
-            // Get the success message element
-            var successMessage = document.getElementById('successMessage').querySelector('.alert');
-
-            // Wait for 3 seconds, then add fade-out class to trigger the animation
-            setTimeout(function() {
-                successMessage.classList.add('fade-out');
-
-                // After the animation completes, remove the success message from the DOM
-                successMessage.addEventListener('transitionend', function() {
-                    successMessage.parentNode.removeChild(successMessage);
-                });
-            }, 2000); // 2000 milliseconds = 2 seconds
-        }
     </script>
 </body>
 

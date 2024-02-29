@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('virtualIdNumber');
             $table->string('timeIn')->nullable();
             $table->string('timeOut')->nullable();
-            $table->string('logsNumber')->nullable();
             $table->string('series')->nullable();
             $table->timestamps();
         });

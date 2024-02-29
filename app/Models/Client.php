@@ -30,7 +30,6 @@ class Client extends Model
         'virtualIdNumber',
         'timeIn',
         'timeOut',
-        'logsNumber',
         'series'
     ];
 }

@@ -13,7 +13,24 @@
     </script>
 
     <style>
-        .form-control, .form-select {
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: linear-gradient(#8a0000, #0c2cba);
+            background-size: cover;
+            background-attachment: fixed;
+            /* or scroll, depending on desired effect */
+            height: 100vh;
+            margin: 0;
+            /* In case there's default margin causing issues */
+        }
+
+        .form-control,
+        .form-select {
             background-color: #ebecee;
             border-color:
         }
@@ -74,10 +91,44 @@
         .is-invalid2 {
             border-color: #dc3545;
         }
+
+        .overlay {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .alert {
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .alert.fade-out {
+            opacity: 0;
+        }
+
+        .alert .icon {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            /* Adjust the size of the icon */
+        }
     </style>
 </head>
 
-<body style="background-image: linear-gradient(#8a0000, #0c2cba); height: auto;">
+<body>
+    <div id=submitedMessage class="overlay">
+        @if (session()->has('submited'))
+            <div class="alert alert-success" role="alert">
+                <i class="fa-solid fa-circle-check pr-3"></i>
+                {{ session('submited') }}
+            </div>
+        @endif
+    </div>
     <div>
         @if ($errors->any())
             <div>
@@ -147,8 +198,9 @@
                 class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
                 style="border-radius: 10px;
             overflow: hidden;
-            background: rgba(247, 247, 247, 0.26);
-            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);">
+            background: rgba(247, 247, 247, 0.719);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);"
+                id="submittForm">
                 @csrf
                 @method('post')
                 <div class="row">
@@ -170,15 +222,15 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="region"><strong>Region</strong></label>
-                        <select id="region" name="region" class="form-select region" aria-label="Default select example"
-                            onchange="loadProvince()">
+                        <select id="region" name="region" class="form-select region"
+                            aria-label="Default select example" onchange="loadProvince()">
                             {{-- <option selected value="">Select Region</option> --}}
                         </select>
                     </div>
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4 select_option">
                         <label class="label" for="province"><strong>Province</strong></label>
-                        <select id="province" name="province" class="form-select province" aria-label="Default select example"
-                            onchange="loadMunicipality()">
+                        <select id="province" name="province" class="form-select province"
+                            aria-label="Default select example" onchange="loadMunicipality()">
                             <option selected value="">Select Province</option>
                             <!-- Municipality options will be populated dynamically -->
                         </select>
@@ -193,7 +245,8 @@
                     </div>
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="barangay"><strong>Barangay</strong></label>
-                        <select id="barangay" name="barangay" class="form-select barangay" aria-label="Default select example">
+                        <select id="barangay" name="barangay" class="form-select barangay"
+                            aria-label="Default select example">
                             <option selected value="">Select Barangay</option>
                             <!-- Barangay options will be populated dynamically -->
                         </select>
@@ -218,8 +271,8 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="middleName"> <strong>Middle Name</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
-                            class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on">
+                            class="form-control" placeholder="Dela Cruz (If Applicable)"
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="on">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
@@ -246,7 +299,7 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="contact"> <strong>Mobile Number</strong> </label>
                         <input type="tel" id="contact" class="form-control" name="contact" value=""
-                            pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701"
+                            pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701 (Optional)"
                             onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="on"
                             required>
                     </div>
@@ -266,7 +319,7 @@
                         <select class="form-select" id="officeConcerned" name="officeConcerned">
                             <option value="">Please Select</option>
                             @foreach ($fd as $item)
-                                <option value="{{$item->division_short_name}}">{{$item->division_name}}</option>
+                                <option value="{{ $item->division_short_name }}">{{ $item->division_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -285,10 +338,10 @@
                             onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="on"
                             required>
                     </div>
-                    
+
                     {{-- Modal --}}
                     @include('client.modal')
-            </form>
+            
 
             <div class="container-responsive">
                 <div class="row align-items-center">
@@ -299,15 +352,23 @@
                     </div>
 
                     <div class="col-6 col-md-4 mt-3 mt-sm-4">
-                        <button type="button" class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
-                                style="text-decoration: none; color: white; font-weight: bold;">Go to Logs</a></button>
+                        <a href="{{ route('client.clientLogs') }}" style="text-decoration: none;">
+                            <button type="button" class="btn btn-primary"
+                                style="color: white; font-weight: bold;">Go to Logs</button>
+                        </a>
                     </div>
+
                 </div>
             </div>
+        </form>
         </div>
 
     </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/bd99322ebc.js" crossorigin="anonymous"></script>
     <script>
         function clearPlaceholder(input) {
             input.setAttribute('data-original-placeholder', input.placeholder);
@@ -356,7 +417,8 @@
             event.preventDefault(); // This line ensures the form submission is halted
 
             // Check if any required field is empty
-            if (!emailAddress || !region || !province || !municipality || !barangay || !clientType || !firstName || !lastName || !gender || !birthDate ||
+            if (!emailAddress || !region || !province || !municipality || !barangay || !clientType || !firstName ||
+                !lastName || !gender || !birthDate ||
                 !contact || !divisionOfResidence || !officeConcerned || !purposeId || !virtualIdNumber) {
                 // Display an alert to the user indicating that all required fields must be filled
                 alert('Please fill all required fields.');
@@ -388,6 +450,21 @@
                 staticBackdrop.show();
             }
         });
+
+        // Check if the submited message exists
+        if (document.getElementById('submitedMessage')) {
+            var submitedMessage = document.getElementById('submitedMessage').querySelector('.alert');
+
+            if (submitedMessage) {
+                setTimeout(function() {
+                    submitedMessage.classList.add('fade-out');
+
+                    submitedMessage.addEventListener('transitionend', function() {
+                        submitedMessage.parentNode.removeChild(submitedMessage);
+                    });
+                }, 4000);
+            }
+        }
 
         // Script for API
 
@@ -469,7 +546,7 @@
 
                     if (selectedProvince && selectedProvince.municipality_list) {
                         municipalitySelect.innerHTML =
-                        '<option value="">Select Municipality</option>'; // Clear existing municipality options
+                            '<option value="">Select Municipality</option>'; // Clear existing municipality options
 
                         // Iterate over the municipalities in the selected province
                         for (let municipalityName in selectedProvince.municipality_list) {

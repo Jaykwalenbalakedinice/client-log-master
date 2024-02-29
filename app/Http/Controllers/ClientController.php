@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use Carbon\Carbon;
 use DB;
+
 class ClientController extends Controller
 {
     public function applicationForm()
@@ -41,17 +42,13 @@ class ClientController extends Controller
             'purposeId' => 'required',
             'virtualIdNumber' => 'required',
             'timeOut' => 'nullable',
-            'logsNumber' => 'nullable',
         ]);
 
-        $logsNumber = Client::count() + 1;
-        $data['logsNumber'] = $logsNumber;
         $data['timeIn'] = Carbon::now();
         $data['series'] = Carbon::now()->year;
 
         $newClient = Client::create($data);
-        // return redirect(route('client.store'));
-        return redirect()->route('client.store')->with('success', 'Client created successfully.');
+        return redirect()->route('client.store')->with('submited', 'Application submited successfully.');
     }
 
     // Controller method for logging out client
@@ -59,8 +56,7 @@ class ClientController extends Controller
     {
         //Update the timeOut field in the database
         $client->update(['timeOut' => Carbon::now()]);
-
-        return redirect()->route('client.clientLogs')->with('success', 'Logged out successfully.');
+        return redirect()->route('client.clientLogs')->with(['success' => 'Logged out successfully.', 'logsNumber' => $client->id]);
     }
 
 }
