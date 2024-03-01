@@ -12,6 +12,7 @@ class Client extends Model
     protected $table = 'tbl_clientLogs';
 
     protected $fillable = [
+        'clientNumber',
         'emailAddress',
         'region',
         'province',
@@ -25,8 +26,6 @@ class Client extends Model
         'birthDate',
         'contact',
         'divisionOfResidence',
-        'officeConcerned',
-        'purposeId',
         'virtualIdNumber',
         'timeIn',
         'timeOut',

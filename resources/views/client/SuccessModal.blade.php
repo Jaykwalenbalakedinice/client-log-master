@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body text-center">
             <h4>Please help us improve our services by providing your feedback.</h4>
-            <a href="http://20.20.20.11:8000/feedback-client/public/feedback?logsNumber={{session('logsNumber')}}" class="btn btn-success btn-lg mt-5">Click Me</a>
+            <a href="http://20.20.23.71:8000/feedback-client/public/feedback?logsNumber={{session('logsNumber')}}" class="btn btn-success btn-lg mt-5">Click Me</a>
       </div>
     </div>
   </div>

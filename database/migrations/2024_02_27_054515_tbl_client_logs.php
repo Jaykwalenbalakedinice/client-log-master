@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_clientLogs', function (Blueprint $table) {
             $table->id();
+            $table->string('clientNumber')->nullable();
             $table->string('emailAddress');
             $table->string('region');
             $table->string('province');
@@ -24,10 +25,7 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('gender');
             $table->string('birthDate');
-            $table->string('contact');
-            $table->string('divisionOfResidence');
-            $table->string('officeConcerned');
-            $table->string('purposeId');
+            $table->string('contact')->nullable();
             $table->string('virtualIdNumber');
             $table->string('timeIn')->nullable();
             $table->string('timeOut')->nullable();
