@@ -67,7 +67,7 @@ class ClientController extends Controller
             'gender' => 'required',
             'birthDate' => 'required',
             'contact' => 'nullable',
-            'virtualIdNumber' => 'required',
+            'virtualIdNumber' => 'nullable',
             'timeOut' => 'nullable',
         ]);
 
