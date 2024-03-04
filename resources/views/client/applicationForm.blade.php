@@ -167,7 +167,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group col text-center mt-2">
+                    <div class="form-group col-lg-12 text-center mt-2">
                         <label class="label text-center text-danger" for="virtualIdNumber"> <strong>Virtual ID
                                 Number</strong> </label>
                         <select class="form-control form-control-lg text-center" id="virtualIdNumber"
