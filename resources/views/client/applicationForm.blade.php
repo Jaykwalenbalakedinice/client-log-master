@@ -3,6 +3,7 @@
     <!-- Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/applicationForm.css">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 @endsection
 @section('content')
     <div id=submitedMessage class="overlay">
@@ -150,7 +151,7 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="officeConcerned"> <strong>Office Concerned</strong> </label>
-                        <select id="officeConcerned" name="officeConcerned[]" class="js-states w-100" multiple>
+                        <select id="officeConcerned" name="officeConcerned[]" class="form-select" multiple>
                             @foreach ($fd as $item)
                                 <option value="{{ $item->division_short_name }}">{{ $item->division_name }}</option>
                             @endforeach
@@ -159,7 +160,7 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-8 col-md-8">
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
-                        <select id="purpose" name="purpose[]" class="js-states w-100" multiple>
+                        <select id="purpose" name="purpose[]" class="form-select" multiple>
                             @foreach ($purpose as $item)
                                 <option value="{{ $item->purpose }}">{{ $item->purpose }}</option>
                             @endforeach
@@ -209,7 +210,6 @@
 			<li></li>
 			<li></li>
 		</ul>
-
     </div>
     </div>
     
