@@ -86,7 +86,7 @@ class ClientController extends Controller
         $data['series'] = Carbon::now()->year;
 
         $newClient = Client::create($data);
-        return redirect()->route('client.store')->with('submited', 'Application submited successfully.');
+        return redirect()->route('client.store')->with('submited', 'Application submitted successfully.');
     }
 
     // Controller method for logging out client

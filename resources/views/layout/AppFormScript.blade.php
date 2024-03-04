@@ -16,15 +16,6 @@
         placeholder: "  Select Divison / Office / Unit",
         allowClear: true
     });
-
-    function validate() {
-        const question = "Are you sure that the information you want to submit is true?" + "\n\n" +
-            "By clicking submit, your are allowing us to store your information to our database."
-
-        if (confirm(question) == true) {
-            document.getElementById("submittForm").submit();
-        }
-    }
 </script>
 
 <script>
@@ -36,30 +27,17 @@
     function clearPlaceholder(input) {
         input.setAttribute('data-original-placeholder', input.placeholder);
         input.placeholder = '';
-    }
+    };
 
     function restorePlaceholder(input) {
         if (!input.value.trim()) {
             input.placeholder = input.getAttribute('data-original-placeholder');
         }
-    }
+    };
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-            backdrop: 'static',
-            keyboard: false
-        });
-        myModal.show();
-
-        document.getElementById('agreeButton').addEventListener('click', function() {
-            // Add your logic for what happens when the user agrees
-            // For example, you might close the modal or redirect to another page
-            myModal.hide();
-        });
-    });
-
+    
     // Check if the submitted message exists
-    if (document.getElementById('submittedMessage')) {
+    document.addEventListener('DOMContentLoaded', function() {
         var submittedMessage = document.getElementById('submittedMessage').querySelector('.alert');
 
         if (submittedMessage) {
@@ -71,11 +49,10 @@
                 });
             }, 4000);
         }
-    }
+    };
 
 
     // Script for API
-
     var config = {
         cUrl: 'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json'
     }
@@ -208,4 +185,31 @@
 
 
     window.onload = loadRegions
+</script>
+
+<script>
+    // Data Automatically uppercased
+    function convertToUppercase(inputElement) {
+        // Get the current input value
+        const inputValue = inputElement.value;
+
+        // Convert to uppercase
+        const uppercaseValue = inputValue.toUpperCase();
+
+        // Set the converted value back to the input
+        inputElement.value = uppercaseValue;
+    }
+</script>
+
+<script>
+    // Disabling submit button  until checkbox is checked.
+    $(document).ready(function() {
+        $('#termsAndCondition').change(function() {
+            if ($(this).is(':checked')) {
+                $('#submitBtn').prop('disabled', false);
+            } else {
+                $('#submitBtn').prop('disabled', true);
+            }
+        });
+    });
 </script>

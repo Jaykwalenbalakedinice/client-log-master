@@ -16,6 +16,6 @@
 </head>
 <body>
     @yield('content')
-    @include('layout.script')
+    @include('layout.AppFormScript')
 </body>
 </html>
