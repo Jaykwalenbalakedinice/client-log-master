@@ -6,10 +6,10 @@
 @endsection
 @section('content')
     <div id=submittedMessage class="overlay">
-        @if (session()->has('submitted'))
+        @if (session()->has('submited'))
             <div class="alert alert-success" role="alert">
                 <i class="fa-solid fa-circle-check pr-3"></i>
-                {{ session('submitted') }}
+                {{ session('submited') }}
             </div>
         @endif
     </div>
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="form-group col text-center mt-2">
-                        <label class="label text-center text-danger" for="virtualIdNumber"> <strong>Virtual ID
+                        <label class="label text-center" for="virtualIdNumber"> <strong>Virtual ID
                                 Number</strong> </label>
                         <select class="form-control form-control-lg text-center" id="virtualIdNumber"
                             name="virtualIdNumber" required>

@@ -23,10 +23,11 @@ class ClientController extends Controller
         $clients = Client::all();
         return view('client.clientLogs', ['clients' => $clients]);
     }
-    
-    public function storse(Request $request){
-        foreach($request->get('officeConcerned') as $office){
-            echo $office.'<br>';
+
+    public function storse(Request $request)
+    {
+        foreach ($request->get('officeConcerned') as $office) {
+            echo $office . '<br>';
         }
     }
     public function store(Request $request)
@@ -72,15 +73,15 @@ class ClientController extends Controller
         ]);
 
         //saving client office concerned (Kung alin ang opisinang kanyang mga pupuntahan)
-        foreach($request->get('officeConcerned') as $office){
-            DB::table('tbl_client_office_concerned')->insert(['logsNumber'=> $clientNumber, 'officeName' => $office]);
+        foreach ($request->get('officeConcerned') as $office) {
+            DB::table('tbl_client_office_concerned')->insert(['logsNumber' => $clientNumber, 'officeName' => $office]);
         }
 
         //saving client purposes
-        foreach($request->get('purpose') as $purpose){
-            DB::table('tbl_client_purpose')->insert(['logsNumber'=> $clientNumber, 'clientPurpose' => $purpose]);
+        foreach ($request->get('purpose') as $purpose) {
+            DB::table('tbl_client_purpose')->insert(['logsNumber' => $clientNumber, 'clientPurpose' => $purpose]);
         }
-        
+
 
         $data['timeIn'] = Carbon::now();
         $data['series'] = Carbon::now()->year;
@@ -97,4 +98,19 @@ class ClientController extends Controller
         return redirect()->route('client.clientLogs')->with(['success' => 'Logged out successfully.', 'logsNumber' => $client->clientNumber]);
     }
 
+    public function getClientLogs()
+    {
+        $clients = Client::whereNull('timeOut')->get();
+        return response()->json($clients);
+    }
+
+    public function getViewClientLogs()
+    {
+        $clients = Client::whereNull('timeOut')->get();
+        return view('clientLogsViewOnly', ['clients' => $clients]);
+    }
+
+    
+
 }
+

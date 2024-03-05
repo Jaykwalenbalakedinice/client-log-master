@@ -59,24 +59,6 @@
     <div class="container mt-4">
         <div class="row">
 
-            <div class="row mb-3">
-                <div class="col-4 col-md-4 col-lg-2">
-                    <a href="{{ route('client.applicationForm') }}"
-                        style="text-decoration: none; color: white; font-size: 13px;">
-                        <button class="btn btn-dark"><strong>New
-                            Application</strong> 
-                        </button>
-                    </a>
-                </div>
-                <div class="col-4 col-md-2 col-lg-2">
-                    <a href="{{ route('client.viewOnly') }}" class="btn btn-primary">View Only Client Logs</a>
-                </div>
-                <div class="col-4 col-md-4 col-lg-4">
-                    <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
-                        placeholder="Enter Virtual ID">
-                </div>
-            </div>
-
             <div class="table-responsive col-12" style="height: 400px; overflow-y: auto;">
                 <table class="table table-striped table-hover table-sm table-bordered border-dark text-center">
                     <thead>
@@ -88,7 +70,7 @@
                             <th id="log" class="col-2"></th>
                         </tr>
                     </thead>
-                    {{-- Data in clientLogs disappear when logout button clickeds --}}
+                   
                     @foreach ($clients as $client)
                         @if (!$client->timeOut)
                             <tbody>
@@ -97,21 +79,6 @@
                                     <td>{{ $client->firstName }}</td>
                                     <td>{{ $client->middleName }}</td>
                                     <td>{{ $client->lastName }}</td>
-                                    <td>
-
-                                        <div class="row-1">
-                                            <div class="col col-1">
-                                                <form method="POST"
-                                                    action="{{ route('client.logout', ['client' => $client->id]) }}">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    
-                                                    <input type="submit" value="Log out"
-                                                        class="btn btn-success rounded-10" autocomplete="off">
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </td>
                                 </tr>
                             </tbody>
                         @endif
@@ -121,7 +88,7 @@
         </div>
 
     </div>
-    @include('layout.clientLogsScript')
+    @include('layout.clientLogsViewOnlyScript')
 </body>
 
 </html>
