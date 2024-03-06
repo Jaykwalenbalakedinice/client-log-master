@@ -10,4 +10,5 @@ Route::delete('/clientLogs/{client}/destroy', [ClientController::class, 'destroy
 Route::put('/clientLogs/logout/{client}', [ClientController::class, 'logout'])->name('client.logout');
 
 Route::get('/api/clientLogs', [ClientController::class, 'getClientLogs']);
-Route::get('/clientLogsViewOnly', [ClientController::class, 'getViewClientLogs'])->name('client.viewOnly');
+Route::get('/api/clientLogsViewOnly', [ClientController::class, 'getViewClientLogs'])->name('client.clientLogsViewOnly');
+

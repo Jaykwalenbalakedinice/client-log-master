@@ -107,7 +107,7 @@ class ClientController extends Controller
     public function getViewClientLogs()
     {
         $clients = Client::whereNull('timeOut')->get();
-        return view('clientLogsViewOnly', ['clients' => $clients]);
+        return view('client.clientLogsViewOnly', ['clients' => $clients]);
     }
 
     

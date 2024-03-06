@@ -13,6 +13,7 @@
 
     <title>Document</title>
     @yield('additionalStyle')
+    @include('css.applicationForm')
 </head>
 <body>
     @yield('content')

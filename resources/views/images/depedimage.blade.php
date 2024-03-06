@@ -1,0 +1,1 @@
+<img src="/images/depedimage.png" alt="DepEd Image" style="width: 60%; height: 110px">

@@ -60,18 +60,18 @@
         <div class="row">
 
             <div class="row mb-3">
-                <div class="col-4 col-md-4 col-lg-2">
+                <div class="col-4 col-md-2 col-lg-2" style="padding-right: 0px;">
                     <a href="{{ route('client.applicationForm') }}"
                         style="text-decoration: none; color: white; font-size: 13px;">
-                        <button class="btn btn-dark"><strong>New
+                        <button class="btn btn-dark" id="newAppBtn"><strong>New
                             Application</strong> 
                         </button>
                     </a>
                 </div>
-                <div class="col-4 col-md-2 col-lg-2">
-                    <a href="{{ route('client.viewOnly') }}" class="btn btn-primary">View Only Client Logs</a>
+                <div class="col-4 col-md-2 col-lg-1" style="padding: 0px;">
+                    <a id="viewBtn" class="btn btn-dark px-4"><i class="fa-solid fa-eye"></i></a>
                 </div>
-                <div class="col-4 col-md-4 col-lg-4">
+                <div class="col-4 col-md-2 col-lg-3" style="padding: 0px;">
                     <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
                         placeholder="Enter Virtual ID">
                 </div>
@@ -91,7 +91,7 @@
                     {{-- Data in clientLogs disappear when logout button clickeds --}}
                     @foreach ($clients as $client)
                         @if (!$client->timeOut)
-                            <tbody>
+                            <tbody id="clientLogs">
                                 <tr>
                                     <td>{{ $client->virtualIdNumber }}</td>
                                     <td>{{ $client->firstName }}</td>
@@ -106,7 +106,7 @@
                                                     @csrf
                                                     @method('PUT')
                                                     
-                                                    <input type="submit" value="Log out"
+                                                    <input id="logoutBtn" type="submit" value="Log out"
                                                         class="btn btn-success rounded-10" autocomplete="off">
                                                 </form>
                                             </div>

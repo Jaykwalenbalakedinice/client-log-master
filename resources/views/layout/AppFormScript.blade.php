@@ -21,11 +21,15 @@
 </script>
 
 <script>
-    // Prevents multiple form submission.
-    document.querySelector('form').addEventListener('submit', function() {
-        this.querySelector("button[type='submit']").disabled = true;
+    $(document).ready(function() {
+        $('#submitButton').click(function() {
+            $(this).prop('disabled', true);
+            $('#submittForm').submit();
+        });
     });
+</script>
 
+<script>
     function clearPlaceholder(input) {
         input.setAttribute('data-original-placeholder', input.placeholder);
         input.placeholder = '';
@@ -37,158 +41,159 @@
         }
     }
 </script>
-    
+
 
 <script>
     // Check if the submitted message exists
     document.addEventListener('DOMContentLoaded', function() {
-                var submittedMessage = document.getElementById('submittedMessage').querySelector('.alert');
+        var submittedMessage = document.getElementById('submittedMessage').querySelector('.alert');
 
-                if (submittedMessage) {
-                    setTimeout(function() {
-                        submittedMessage.classList.add('fade-out');
+        if (submittedMessage) {
+            setTimeout(function() {
+                submittedMessage.classList.add('fade-out');
 
-                        submittedMessage.addEventListener('transitionend', function() {
-                            submittedMessage.parentNode.removeChild(submittedMessage);
-                        });
-                    }, 4000);
-                }
-            });
+                submittedMessage.addEventListener('transitionend', function() {
+                    submittedMessage.parentNode.removeChild(submittedMessage);
+                });
+            }, 4000);
+        }
+    });
 </script>
-    
+
 <script>
     // Script for API
-            var config = {
-                cUrl: 'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json'
-            }
+    var config = {
+        cUrl: 'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json'
+    }
 
-            var apiEndPoint =
-                'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json';
+    var apiEndPoint =
+        'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json';
 
-            var regionSelect = document.querySelector('#region'); provinceSelect = document.querySelector('#province'),
-            citySelect = document.querySelector('#city'),
-            municipalitySelect = document.querySelector('#municipality'),
-            barangaySelect = document.querySelector('#barangay')
+    var regionSelect = document.querySelector('#region');
+    provinceSelect = document.querySelector('#province'),
+        citySelect = document.querySelector('#city'),
+        municipalitySelect = document.querySelector('#municipality'),
+        barangaySelect = document.querySelector('#barangay')
 
-            function loadRegions() {
-                let apiEndPoint = config.cUrl;
+    function loadRegions() {
+        let apiEndPoint = config.cUrl;
 
-                fetch(apiEndPoint)
-                    .then(Response => Response.json())
-                    .then(data => {
-                        regionSelect.innerHTML = '<option value="">Select Region</option>';
+        fetch(apiEndPoint)
+            .then(Response => Response.json())
+            .then(data => {
+                regionSelect.innerHTML = '<option value="">Select Region</option>';
 
-                        // Iterate over the regions in the data
-                        for (let regionCode in data) {
-                            const region = data[regionCode];
-                            const option = document.createElement('option');
-                            option.value = regionCode;
-                            option.textContent = region.region_name;
-                            regionSelect.appendChild(option);
-                        }
+                // Iterate over the regions in the data
+                for (let regionCode in data) {
+                    const region = data[regionCode];
+                    const option = document.createElement('option');
+                    option.value = regionCode;
+                    option.textContent = region.region_name;
+                    regionSelect.appendChild(option);
+                }
 
-                        regionSelect.disabled = false;
-                    })
-                    .catch(error => console.error('Error loading regions:', error));
-            }
-
-
-            function loadProvince() {
-                // Get the selected region code
-                const selectedRegionCode = regionSelect.value;
-
-                fetch(apiEndPoint)
-                    .then(response => response.json())
-                    .then(data => {
-                        const selectedRegion = data[selectedRegionCode];
-
-                        if (selectedRegion && selectedRegion.province_list) {
-                            provinceSelect.innerHTML =
-                                '<option value="">Select Province</option>'; // Clear existing province options
-
-                            // Iterate over the provinces in the selected region
-                            for (let provinceName in selectedRegion.province_list) {
-                                const option = document.createElement('option');
-                                option.value = provinceName;
-                                option.textContent = provinceName;
-                                provinceSelect.appendChild(option);
-                            }
-
-                            provinceSelect.disabled = false;
-                        } else {
-                            console.error('Invalid response format:', data);
-                        }
-                    })
-                    .catch(error => console.error('Error loading provinces:', error));
-            }
-
-            function loadMunicipality() {
-                // Get the selected region and province codes
-                const selectedRegionCode = regionSelect.value;
-                const selectedProvinceName = provinceSelect.value;
-
-                fetch(apiEndPoint)
-                    .then(response => response.json())
-                    .then(data => {
-                        const selectedRegion = data[selectedRegionCode];
-                        const selectedProvince = selectedRegion.province_list[selectedProvinceName];
-
-                        if (selectedProvince && selectedProvince.municipality_list) {
-                            municipalitySelect.innerHTML =
-                                '<option value="">Select Municipality</option>'; // Clear existing municipality options
-
-                            // Iterate over the municipalities in the selected province
-                            for (let municipalityName in selectedProvince.municipality_list) {
-                                const option = document.createElement('option');
-                                option.value = municipalityName;
-                                option.textContent = municipalityName;
-                                municipalitySelect.appendChild(option);
-                            }
-
-                            municipalitySelect.disabled = false;
-                        } else {
-                            console.error('Invalid response format:', data);
-                        }
-                    })
-                    .catch(error => console.error('Error loading municipalities:', error));
-            }
+                regionSelect.disabled = false;
+            })
+            .catch(error => console.error('Error loading regions:', error));
+    }
 
 
-            function loadBarangay() {
-                // Get the selected region, province, and city codes
-                const selectedRegionCode = regionSelect.value;
-                const selectedProvinceName = provinceSelect.value;
-                const selectedMunicipalityName = municipalitySelect.value;
+    function loadProvince() {
+        // Get the selected region code
+        const selectedRegionCode = regionSelect.value;
 
-                fetch(apiEndPoint)
-                    .then(response => response.json())
-                    .then(data => {
-                        const selectedRegion = data[selectedRegionCode];
-                        const selectedProvince = selectedRegion.province_list[selectedProvinceName];
-                        const selectedMunicipality = selectedProvince.municipality_list[selectedMunicipalityName];
+        fetch(apiEndPoint)
+            .then(response => response.json())
+            .then(data => {
+                const selectedRegion = data[selectedRegionCode];
 
-                        if (selectedMunicipality && selectedMunicipality.barangay_list) {
-                            barangaySelect.innerHTML =
-                                '<option value="">Select Barangay</option>'; // Clear existing barangay options
+                if (selectedRegion && selectedRegion.province_list) {
+                    provinceSelect.innerHTML =
+                        '<option value="">Select Province</option>'; // Clear existing province options
 
-                            // Iterate over the barangays in the selected city
-                            for (let barangayName of selectedMunicipality.barangay_list) {
-                                const option = document.createElement('option');
-                                option.value = barangayName;
-                                option.textContent = barangayName;
-                                barangaySelect.appendChild(option);
-                            }
+                    // Iterate over the provinces in the selected region
+                    for (let provinceName in selectedRegion.province_list) {
+                        const option = document.createElement('option');
+                        option.value = provinceName;
+                        option.textContent = provinceName;
+                        provinceSelect.appendChild(option);
+                    }
 
-                            barangaySelect.disabled = false;
-                        } else {
-                            console.error('Invalid response format:', data);
-                        }
-                    })
-                    .catch(error => console.error('Error loading barangays:', error));
-            }
-            window.onload = loadRegions
+                    provinceSelect.disabled = false;
+                } else {
+                    console.error('Invalid response format:', data);
+                }
+            })
+            .catch(error => console.error('Error loading provinces:', error));
+    }
+
+    function loadMunicipality() {
+        // Get the selected region and province codes
+        const selectedRegionCode = regionSelect.value;
+        const selectedProvinceName = provinceSelect.value;
+
+        fetch(apiEndPoint)
+            .then(response => response.json())
+            .then(data => {
+                const selectedRegion = data[selectedRegionCode];
+                const selectedProvince = selectedRegion.province_list[selectedProvinceName];
+
+                if (selectedProvince && selectedProvince.municipality_list) {
+                    municipalitySelect.innerHTML =
+                        '<option value="">Select Municipality</option>'; // Clear existing municipality options
+
+                    // Iterate over the municipalities in the selected province
+                    for (let municipalityName in selectedProvince.municipality_list) {
+                        const option = document.createElement('option');
+                        option.value = municipalityName;
+                        option.textContent = municipalityName;
+                        municipalitySelect.appendChild(option);
+                    }
+
+                    municipalitySelect.disabled = false;
+                } else {
+                    console.error('Invalid response format:', data);
+                }
+            })
+            .catch(error => console.error('Error loading municipalities:', error));
+    }
+
+
+    function loadBarangay() {
+        // Get the selected region, province, and city codes
+        const selectedRegionCode = regionSelect.value;
+        const selectedProvinceName = provinceSelect.value;
+        const selectedMunicipalityName = municipalitySelect.value;
+
+        fetch(apiEndPoint)
+            .then(response => response.json())
+            .then(data => {
+                const selectedRegion = data[selectedRegionCode];
+                const selectedProvince = selectedRegion.province_list[selectedProvinceName];
+                const selectedMunicipality = selectedProvince.municipality_list[selectedMunicipalityName];
+
+                if (selectedMunicipality && selectedMunicipality.barangay_list) {
+                    barangaySelect.innerHTML =
+                        '<option value="">Select Barangay</option>'; // Clear existing barangay options
+
+                    // Iterate over the barangays in the selected city
+                    for (let barangayName of selectedMunicipality.barangay_list) {
+                        const option = document.createElement('option');
+                        option.value = barangayName;
+                        option.textContent = barangayName;
+                        barangaySelect.appendChild(option);
+                    }
+
+                    barangaySelect.disabled = false;
+                } else {
+                    console.error('Invalid response format:', data);
+                }
+            })
+            .catch(error => console.error('Error loading barangays:', error));
+    }
+    window.onload = loadRegions
 </script>
-            
+
 
 <script>
     // Data Automatically uppercased
@@ -203,7 +208,6 @@
         inputElement.value = uppercaseValue;
     }
 </script>
-    
 
 <script>
     // Disabling submit button  until checkbox is checked.
@@ -216,4 +220,30 @@
             }
         });
     })
+</script>
+
+<script>
+    document.getElementById('submittForm').addEventListener('submit', function(e) {
+        // Prevent the form from submitting
+        e.preventDefault();
+
+        // Show the modal
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {});
+        myModal.show();
+    });
+
+    document.querySelector('.modal-footer .btn-primary').addEventListener('click', function() {
+        // Submit the form when the user confirms in the modal
+        document.getElementById('submittForm').submit();
+    });
+</script>
+
+<script>
+    document.getElementById('editBtn').addEventListener('click', function() {
+        // Uncheck the checkbox
+        document.getElementById('termsAndCondition').checked = false;
+
+        // Disable the submit button
+        document.getElementById('submitBtn').disabled = true;
+    });
 </script>
