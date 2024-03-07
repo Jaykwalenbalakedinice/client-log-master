@@ -1,12 +1,10 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
-<script src="https://kit.fontawesome.com/bd99322ebc.js" crossorigin="anonymous"></script>
+<script src="{{asset('script/bootstrap.js')}}"></script>
+<script src="{{asset('script/fontawesome-bd99322ebc.js')}}" crossorigin="anonymous"></script>
 
 <!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{asset('script/jquery3.2.1.js')}}"></script>
 <!-- Select2 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="{{asset('script/ajax-select2.vr4.0.6.js')}}"></script>
 
 
 <script>

@@ -3,38 +3,52 @@
     html {
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     body {
         background-size: cover;
         background-attachment: fixed;
         /* or scroll, depending on desired effect */
-        height: 100vh;
+        height: auto;
+        min-height: 100%;
         width: 100vw;
         margin: 0;
         /* In case there's default margin causing issues */
         background: #76b852;
         /* fallback for old browsers */
-        background: -webkit-linear-gradient(to top, #b85252, #1b3cd1);
-        background: -moz-linear-gradient(to top, #b85252, #1b3cd1);
-        background: -o-linear-gradient(to top, #b85252, #1b3cd1);
-        background: linear-gradient(to top, #b85252, #1b3cd1);
+        background: -webkit-linear-gradient(to top, #ff4444, #1b3cd1);
+        background: -moz-linear-gradient(to top, #ff4444, #1b3cd1);
+        background: -o-linear-gradient(to top, #ff4444, #1b3cd1);
+        background: linear-gradient(to top, #ff4444, #1b3cd1);
         font-family: "Roboto", sans-serif;
     }
 
+    img {
+        width: 50%;
+        height: 120px;
+    }
+
+    .region, .province, .municipality, .barangay, .citizenType, .gender, .birthDate, #virtualIdNumber {
+        color: gray;
+    }
+
+
     .form-control::placeholder {
-        color: black;
+        color: gray;
+    }
+
+    select::placeholder {
+        color: gray;
     }
 
     .js-states::placeholder {
-        color: black;
+        color: gray;
     }
 
 
     .select2-placeholder {
-        color: #000000;
-        /* Change this to your desired color */
+        color: gray;
     }
 
 
@@ -167,12 +181,12 @@
         margin-left: 10px;
     }
 
-    @media (max-width: 1024px) and (max-height: 1280px) {
+    /* @media (max-width: 1024px) and (max-height: 1280px) {
         body {
             justify-content: center;
             align-items: center;
         }
-    }
+    } */
 
 
     .alert p {

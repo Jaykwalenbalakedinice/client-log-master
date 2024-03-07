@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('additionalStyle')
     <!-- Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{asset('css/ajax-select2-4.0.6.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
     <div id=submittedMessage class="overlay">
@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-3">
-                @include('images.depedimage')
+                <img src="{{asset('images/depedimage.png')}}" alt="Deped image">
                 <h4 class="text-white mb-1" style="margin-top: 10px;"><strong>HELP US SERVE YOU BETTER!</strong>
                 </h4>
             </div>
@@ -43,21 +43,21 @@
                     </div>
 
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="emailAddress"> <strong>Active Email Address</strong></label>
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
+                        <label class="label" for="emailAddress"> <strong>Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
                             placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
                         <label class="label" for="region"><strong>Region</strong></label>
                         <select id="region" name="region" class="form-select region" aria-label="Default select example"
                             onchange="loadProvince()" required>
                             {{-- <option selected value="">Select Region</option> --}}
                         </select>
                     </div>
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4 select_option">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4 select_option">
                         <label class="label" for="province"><strong>Province</strong></label>
                         <select id="province" name="province" class="form-select province"
                             aria-label="Default select example" onchange="loadMunicipality()" required>
@@ -65,7 +65,7 @@
                             <!-- Municipality options will be populated dynamically -->
                         </select>
                     </div>
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
                         <label class="label" for="municipality"><strong>Municipality</strong></label>
                         <select id="municipality" name="municipality" class="form-select municipality"
                             aria-label="Default select example" onchange="loadBarangay()" required>
@@ -98,14 +98,14 @@
                             onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)" required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4" style="font-size: ">
                         <label class="label" for="middleName"> <strong>Middle Name (If Applicable)</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)">
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
                         <label class="label" for="lastName"> <strong>Last Name</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
@@ -113,7 +113,7 @@
                             required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="gender"> <strong>Gender</strong> </label>
                         <select class="form-select" id="gender" name="gender">
                             <option value="male">Male</option>
@@ -121,7 +121,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
                         <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
                             class="form-control" autocomplete="on" required>
@@ -144,7 +144,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-8 col-md-8">
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
                         <select id="purpose" name="purpose[]" class="js-states" multiple required>
                             @foreach ($purpose as $item)

@@ -44,8 +44,7 @@
     @include('client.SuccessModal')
     <div id="successMessage" class="overlay">
         @if (session()->has('success'))
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="{{asset('script/jquery-3.7.1.js')}}"></script>
             <script>
                 $(window).on('load', function() {
                     $('#staticBackdrop').modal('show');
@@ -78,7 +77,7 @@
             </div>
 
             <div class="table-responsive col-12" style="height: 400px; overflow-y: auto;">
-                <table class="table table-striped table-hover table-sm table-bordered border-dark text-center">
+                <table class="table table-striped table-hover table-sm table-bordered border-dark text-center" id="clientsTable">
                     <thead>
                         <tr class="table-dark table-active text-uppercase text-white">
                             <th id="log" class="col-2">Virtual ID</th>
@@ -106,7 +105,7 @@
                                                     @csrf
                                                     @method('PUT')
                                                     
-                                                    <input id="logoutBtn" type="submit" value="Log out"
+                                                    <input name="logoutBtn" id="logoutBtn" type="submit" value="Log out"
                                                         class="btn btn-success rounded-10" autocomplete="off">
                                                 </form>
                                             </div>

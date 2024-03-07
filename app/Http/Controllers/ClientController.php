@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Crypt;
 
 class ClientController extends Controller
 {
@@ -54,6 +55,7 @@ class ClientController extends Controller
 
         $request->merge(['clientNumber' => $clientNumber]); // Add the clientNumber to the request data
 
+
         $data = $request->validate([
             'clientNumber' => 'required',
             'emailAddress' => 'required',
@@ -72,6 +74,20 @@ class ClientController extends Controller
             'timeOut' => 'nullable',
         ]);
 
+        // Encrypt email and contact
+        $data['emailAddress'] = encrypt($data['emailAddress']);
+        $data['contact'] = $data['contact'] ? encrypt($data['contact']) : null;
+        $data['birthDate'] = encrypt($data['birthDate']);
+
+        // Get the virtual ID from the form submission
+        $virtualIdNumber = $request->input('virtualIdNumber');
+        \Log::info('Virtual ID Number: ' . $virtualIdNumber);
+
+        // Update the status of the virtual ID to 'occupied'
+        DB::table('tbl_virtual_id')
+            ->where('id_number', $virtualIdNumber)
+            ->update(['status' => 'occupied']);
+
         //saving client office concerned (Kung alin ang opisinang kanyang mga pupuntahan)
         foreach ($request->get('officeConcerned') as $office) {
             DB::table('tbl_client_office_concerned')->insert(['logsNumber' => $clientNumber, 'officeName' => $office]);
@@ -81,6 +97,7 @@ class ClientController extends Controller
         foreach ($request->get('purpose') as $purpose) {
             DB::table('tbl_client_purpose')->insert(['logsNumber' => $clientNumber, 'clientPurpose' => $purpose]);
         }
+
 
 
         $data['timeIn'] = Carbon::now();
@@ -95,6 +112,14 @@ class ClientController extends Controller
     {
         //Update the timeOut field in the database
         $client->update(['timeOut' => Carbon::now()]);
+
+        // Get the virtual ID from the client
+        $virtualIdNumber = $client->virtualIdNumber;
+
+        // Update the status of the virtual ID to 'available'
+        DB::table('tbl_virtual_id')
+            ->where('id_number', $virtualIdNumber)
+            ->update(['status' => 'available']);
         return redirect()->route('client.clientLogs')->with(['success' => 'Logged out successfully.', 'logsNumber' => $client->clientNumber]);
     }
 
@@ -109,8 +134,6 @@ class ClientController extends Controller
         $clients = Client::whereNull('timeOut')->get();
         return view('client.clientLogsViewOnly', ['clients' => $clients]);
     }
-
-    
 
 }
 

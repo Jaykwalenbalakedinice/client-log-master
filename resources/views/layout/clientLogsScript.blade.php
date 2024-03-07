@@ -1,10 +1,8 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+<script src="{{ asset('script/bootstrap.js') }}"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('script/ajaxjquery-3.5.1.js') }}"></script>
 
-<script src="https://kit.fontawesome.com/bd99322ebc.js" crossorigin="anonymous"></script>
+<script src="{{ asset('script/fontawesome.js') }}" crossorigin="anonymous"></script>
 
 <script>
     // Js function for search bar
@@ -31,21 +29,23 @@
     let previousData = [];
     // This function fetches new data and updates the table
     function updateTable() {
-        const table = document.querySelector('#clientLogs');
+        let table = document.querySelector('#clientLogs');
+        let tbody;
 
         if (!table) {
             // Create table and tbody elements
-            const tableElement = document.createElement('table');
-            const tbodyElement = document.createElement('tbody');
+            table = document.createElement('table');
+            tbody = document.createElement('tbody');
 
             // Append tbody to table
-            tableElement.appendChild(tbodyElement);
+            table.appendChild(tbody);
 
             // Append table to document body or specific container
-            document.body.appendChild(tableElement);
+            document.body.appendChild(table);
 
-            // Reassign table to the newly created tbody
-            table = tbodyElement;
+        } else {
+            // If table already exists, select the tbody
+            tbody = table.querySelector('tbody');
         }
 
         fetch('http://localhost/client-log-master/public/api/clientLogs', {
@@ -75,7 +75,34 @@
                         logoutButton.value = 'Log out';
                         logoutButton.className = 'btn btn-success rounded-10';
                         logoutButton.addEventListener('click', () => {
-                            // Add your logout logic here
+                            fetch('/clientLogs/logout' + client
+                                    .id, { // Replace with your API endpoint
+                                        method: 'PUT',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            // Include CSRF token in header for Laravel
+                                            'X-CSRF-TOKEN': document.querySelector(
+                                                'meta[name="csrf-token"]').getAttribute(
+                                                'content')
+                                        },
+                                        body: JSON.stringify({
+                                            virtualIdNumber: client.virtualIdNumber
+                                        })
+                                    })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // Handle the response data
+                                })
+                                .catch(error => {
+                                    console.error(
+                                        'There has been a problem with your fetch operation:',
+                                        error);
+                                });
                         });
                         logoutCell.appendChild(logoutButton);
                         row.appendChild(logoutCell);
@@ -85,12 +112,15 @@
                             $(logoutButton).hide();
                         }
 
-                        table.appendChild(row);
+                        tbody.appendChild(row);
                     });
 
                     // Update previousData
                     previousData = data;
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
             });
     }
 
@@ -98,16 +128,6 @@
     setInterval(updateTable, 5000);
 </script>
 
-<script>
-    fetch('/clientLogs/logout/' + client.id, { // Replace with your API endpoint
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            // Include CSRF token in header for Laravel
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-    })
-</script>
 
 <script>
     $('#viewBtn').click(function() {
