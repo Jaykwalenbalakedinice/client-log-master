@@ -100,10 +100,10 @@
 
                                         <div class="row-1">
                                             <div class="col col-1">
-                                                <form method="POST"
+                                                <form method="put"
                                                     action="{{ route('client.logout', ['client' => $client->id]) }}">
                                                     @csrf
-                                                    @method('PUT')
+                                                    @method('put')
                                                     
                                                     <input name="logoutBtn" id="logoutBtn" type="submit" value="Log out"
                                                         class="btn btn-success rounded-10" autocomplete="off">

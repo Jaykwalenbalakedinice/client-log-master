@@ -110,6 +110,8 @@ class ClientController extends Controller
     // Controller method for logging out client
     public function logout(Client $client)
     {
+        
+
         //Update the timeOut field in the database
         $client->update(['timeOut' => Carbon::now()]);
 
