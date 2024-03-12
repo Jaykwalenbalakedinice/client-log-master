@@ -27,9 +27,8 @@
         <div class="row">
             <form method="POST" action="{{ route('client.store') }}"
                 class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
-                style="border-radius: 10px;
-                overflow: hidden;
-                background: rgba(0, 0, 0, 0.18); background-size: cover;"
+                style="overflow: hidden;
+                background: rgba(0, 0, 0, 0.548); background-size: cover;"
                 id="submittForm">
                 @csrf
                 @method('post')
@@ -43,21 +42,21 @@
                     </div>
 
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="emailAddress"> <strong>Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
                             placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="region"><strong>Region</strong></label>
                         <select id="region" name="region" class="form-select region" aria-label="Default select example"
                             onchange="loadProvince()" required>
                             {{-- <option selected value="">Select Region</option> --}}
                         </select>
                     </div>
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4 select_option">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3 select_option">
                         <label class="label" for="province"><strong>Province</strong></label>
                         <select id="province" name="province" class="form-select province"
                             aria-label="Default select example" onchange="loadMunicipality()" required>
@@ -65,7 +64,7 @@
                             <!-- Municipality options will be populated dynamically -->
                         </select>
                     </div>
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="municipality"><strong>Municipality</strong></label>
                         <select id="municipality" name="municipality" class="form-select municipality"
                             aria-label="Default select example" onchange="loadBarangay()" required>
@@ -98,14 +97,14 @@
                             onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)" required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4" style="font-size: ">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3" style="font-size: ">
                         <label class="label" for="middleName"> <strong>Middle Name (If Applicable)</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)">
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="lastName"> <strong>Last Name</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
@@ -173,30 +172,7 @@
                                     style="font-weight: bold;" onclick="validate()">Submit</button>
                             </div>
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Data Verification Confirmation.</h1>
-                                        </div>
-                                        <div class="modal-body">
-                                            Dear User, your trust is essential to us. By submitting data on this website,
-                                            you are affirming that the information provided is accurate and truthful to the
-                                            best of your knowledge. We rely on the integrity of our users to maintain the
-                                            quality and reliability of our services. Please ensure that all information
-                                            submitted is genuine and up-to-date. Thank you for your cooperation in helping
-                                            us create a trustworthy environment for all.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal" id="editBtn" onclick="validate()">Edit</button>
-                                            <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('client.dataVerification')
 
                             <div class="col-6 col-md-4 mt-3 mt-sm-4">
                                 <a href="{{ route('client.clientLogs') }}" style="text-decoration: none;">
@@ -220,19 +196,6 @@
                     </div>
             </form>
         </div>
-        <ul class="colorlib-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-
     </div>
     </div>
 @endsection

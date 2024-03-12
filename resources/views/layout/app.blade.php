@@ -7,7 +7,6 @@
     <title>Application Form</title>
     <link rel="stylesheet" href="{{asset ('css/ajax-4.0.6.css')}}">
     <link href="{{asset('css/bootstrap-5.0.2.css')}}" rel="stylesheet">
-    <script src="{{asset('script/bootstrap-5.0.2.js')}}"></script>
 
     <title>Document</title>
     @yield('additionalStyle')
@@ -16,5 +15,6 @@
 <body>
     @yield('content')
     @include('layout.AppFormScript')
+    <script src="{{asset('script/bootstrap-5.0.2.js')}}"></script>
 </body>
 </html>

@@ -68,7 +68,7 @@ class ClientController extends Controller
             'middleName' => 'nullable',
             'lastName' => 'required',
             'gender' => 'required',
-            'birthDate' => 'required',
+            'birthDate' => 'required|date',
             'contact' => 'nullable',
             'virtualIdNumber' => 'nullable',
             'timeOut' => 'nullable',
@@ -108,12 +108,14 @@ class ClientController extends Controller
     }
 
     // Controller method for logging out client
-    public function logout(Client $client)
+    public function logout(Client $client, Request $request)
     {
+        \Log::info('Request Headers:', $request->headers->all());
         
 
         //Update the timeOut field in the database
         $client->update(['timeOut' => Carbon::now()]);
+        auth()->logout();
 
         // Get the virtual ID from the client
         $virtualIdNumber = $client->virtualIdNumber;

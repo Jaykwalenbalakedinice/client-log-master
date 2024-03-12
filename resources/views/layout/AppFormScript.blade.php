@@ -245,3 +245,20 @@
         document.getElementById('submitBtn').disabled = true;
     });
 </script>
+
+<script>
+    const birthDateInput = document.getElementById('birthDate');
+
+    // Add an event listener to validate the input when the user changes the value
+    birthDateInput.addEventListener('input', function () {
+        const inputValue = birthDateInput.value;
+        const year = inputValue.split('-')[0]; // Extract the year part
+
+        // Check if the year has exactly 4 characters
+        if (year.length !== 4) {
+            birthDateInput.setCustomValidity('Year must be 4 characters');
+        } else {
+            birthDateInput.setCustomValidity(''); // Clear any previous validation message
+        }
+    });
+</script>

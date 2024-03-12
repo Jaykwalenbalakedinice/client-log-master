@@ -73,11 +73,13 @@
                             // Add your logout logic here
                             const virtualIdNumber = row.querySelector('td:first-child').textContent;
                             console.log(virtualIdNumber);
+                            const csrfToken = document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content');
+                            console.log('CSRF Token:', csrfToken);
 
 
-                            fetch(`/clientLogs/logout/${virtualIdNumber}`, {
+                            fetch(`/clientLogs/logout/{client}`, {
                                     method: 'PUT',
-                                    action: 'client.logout',
                                     headers: {
                                         'Content-Type': 'application/json',
                                         // Include CSRF token for Laravel
