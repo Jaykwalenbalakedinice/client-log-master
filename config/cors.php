@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['php/*', 'clientLogs/logout/{client}'],
+    'paths' => ['php/*', ''],
 
     'allowed_methods' => ['*'],
 

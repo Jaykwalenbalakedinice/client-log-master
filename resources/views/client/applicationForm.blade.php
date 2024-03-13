@@ -6,7 +6,7 @@
 @section('content')
     <div id=submittedMessage class="overlay">
         @if (session()->has('submited'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" style="padding: 1em;" role="alert">
                 <i class="fa-solid fa-circle-check pr-3"></i>
                 {{ session('submited') }}
             </div>
@@ -52,38 +52,39 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="region"><strong>Region</strong></label>
                         <select id="region" name="region" class="form-select region" aria-label="Default select example"
-                            onchange="loadProvince()" required>
-                            {{-- <option selected value="">Select Region</option> --}}
+                            onchange="loadProvince(); changeColor(this);" required>
+                            <option value="" disable selected>Select Region</option>
                         </select>
                     </div>
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3 select_option">
                         <label class="label" for="province"><strong>Province</strong></label>
                         <select id="province" name="province" class="form-select province"
-                            aria-label="Default select example" onchange="loadMunicipality()" required>
-                            <option selected value="">Select Province</option>
+                            aria-label="Default select example" onchange="loadMunicipality(); changeColor(this);" required>
+                            <option disable selected value="">Select Province</option>
                             <!-- Municipality options will be populated dynamically -->
                         </select>
                     </div>
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="municipality"><strong>Municipality</strong></label>
                         <select id="municipality" name="municipality" class="form-select municipality"
-                            aria-label="Default select example" onchange="loadBarangay()" required>
-                            <option selected value="">Select Municipality</option>
+                            aria-label="Default select example" onchange="loadBarangay(); changeColor(this);" required>
+                            <option disabled selected value="">Select Municipality</option>
                             <!-- Municipality options will be populated dynamically -->
                         </select>
                     </div>
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="barangay"><strong>Barangay</strong></label>
                         <select id="barangay" name="barangay" class="form-select barangay"
-                            aria-label="Default select example" required>
-                            <option selected value="">Select Barangay</option>
+                            aria-label="Default select example" onchange="changeColor(this);" required>
+                            <option disable selected value="">Select Barangay</option>
                             <!-- Barangay options will be populated dynamically -->
                         </select>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="clientType"> <strong>Client Type</strong> </label>
-                        <select class="form-control" id="clientType" name="clientType">
+                        <select class="form-select" id="clientType" name="clientType" onchange="changeColor(this)" required>
+                            <option value="" disabled selected>Select Client Type</option>
                             <option value="Citizen">Citizen</option>
                             <option value="Business">Business</option>
                             <option value="Government">Government(Employee or another agency)</option>
@@ -114,7 +115,8 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="gender"> <strong>Gender</strong> </label>
-                        <select class="form-select" id="gender" name="gender">
+                        <select class="form-select" id="gender" name="gender" onchange="changeColor(this)" required>
+                            <option disabled selected value="">Select your gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -123,7 +125,7 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
                         <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
-                            class="form-control" autocomplete="on" required>
+                            class="form-control" autocomplete="on" onchange="changeColor(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
@@ -156,8 +158,8 @@
                         <label class="label text-center" for="virtualIdNumber"> <strong>Virtual ID
                                 Number</strong> </label>
                         <select class="form-control form-control-lg text-center" id="virtualIdNumber"
-                            name="virtualIdNumber" required>
-                            <option value="">Please select your assigned VIRTUAL ID No</option>
+                            name="virtualIdNumber" onchange="changeColor(this)" required>
+                            <option disabled selected value="">Please select your assigned VIRTUAL ID No</option>
                             @foreach ($virtualId as $item)
                                 <option value="{{ $item->id_number }}">{{ $item->id_number }}</option>
                             @endforeach
@@ -185,13 +187,13 @@
                         <div class="wthree-text col">
                             <label class="anim">
                                 <input id="termsAndCondition" type="checkbox" class="checkbox" required="">
-                                <span class="privacyNotice">DATA PRIVACY NOTICE: Data and Information in this form are
-                                    intended exclusively for the purpose of this activity. This will be kept by the process
-                                    owner for the purpose of visitors record. Serving other purposes nto intended by the
-                                    process owner is a violation of Data Privacy Act of 2012. Data subjects voluntarily
-                                    provided these data and information explicitly consenting the process owner to serve its
-                                    purpose.</span>
                             </label>
+                            <span class="privacyNotice">DATA PRIVACY NOTICE: Data and Information in this form are
+                                intended exclusively for the purpose of this activity. This will be kept by the process
+                                owner for the purpose of visitors record. Serving other purposes into intended by the
+                                process owner is a violation of Data Privacy Act of 2012. Data subjects voluntarily
+                                provided these data and information explicitly consenting the process owner to serve its
+                                purpose.</span>
                         </div>
                     </div>
             </form>

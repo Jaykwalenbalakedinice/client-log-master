@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 <div class="col-4 col-md-2 col-lg-1 col-sm-2" style="padding: 0px;">
-                    <a id="viewBtn" class="btn btn-dark px-4"><i class="fa-solid fa-eye"></i></a>
+                    <a id="viewBtn" class="btn btn-dark px-4"><i class="fa-solid fa-eye-slash"></i></a>
                 </div>
                 <div class="col-4 col-md-5 col-lg-3" style="padding: 0px;">
                     <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
@@ -52,7 +52,7 @@
             </div>
 
             <div class="table-responsive col-12">
-                <table class="table table-striped table-sm table-dark text-center table-hover" id="clientsTable">
+                <table class="table table-striped table-sm table-dark text-center table-hover" style="opacity: 0.85;" id="clientsTable">
                     <thead>
                         <tr>
                             <th id="log" class="col-2 pt-3 col-md-2">Virtual ID</th>
@@ -66,7 +66,7 @@
                     @foreach ($clients as $client)
                         @if (!$client->timeOut)
                             <tbody id="clientLogs">
-                                <tr>
+                                <tr data-client-id="{{ $client->id }}">
                                     <td>{{ $client->virtualIdNumber }}</td>
                                     <td>{{ $client->firstName }}</td>
                                     <td>{{ $client->middleName }}</td>
@@ -75,10 +75,10 @@
 
                                         <div class="row-1">
                                             <div class="col col-1 col-md-12">
-                                                <form method="PUT"
+                                                <form method="post"
                                                     action="{{ route('client.logout', ['client' => $client->id]) }}">
                                                     @csrf
-                                                    @method('PUT')
+                                                    @method('post')
                                                     
                                                     <input type="submit" value="Log out"
                                                         class="btn btn-success rounded-10" autocomplete="off">

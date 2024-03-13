@@ -28,6 +28,7 @@
 <script>
     let previousData = [];
     // This function fetches new data and updates the table
+    let lastFetchedId = null;
     function updateTable() {
         let table = document.querySelector('#clientLogs');
 
@@ -79,7 +80,7 @@
 
 
                             fetch(`/clientLogs/logout/{client}`, {
-                                    method: 'PUT',
+                                    method: 'put',
                                     headers: {
                                         'Content-Type': 'application/json',
                                         // Include CSRF token for Laravel
@@ -117,15 +118,18 @@
 
                     // Update previousData
                     previousData = data;
+
+                    // Call updateTable again after 3 seconds
+                    setTimeout(updateTable, 3000);
                 }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
+                setTimeout(updateTable, 3000);
             });
     }
-
-    // Call updateTable every 5 seconds
-    setInterval(updateTable, 3000);
+    // Call updateTable immediately when the page loads
+    updateTable();
 </script>
 
 <script>

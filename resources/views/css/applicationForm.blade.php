@@ -5,8 +5,18 @@
         padding: 0;
     }
 
-    .modal{
+    .modal {
         margin-top: 5em;
+    }
+
+    .fa-solid{
+        padding-right: 4px;
+    }
+
+    .card-body {
+        box-shadow: -1px -1px 57px 22px rgba(0, 0, 0, 0.32);
+        -webkit-box-shadow: -1px -1px 57px 22px rgba(0, 0, 0, 0.32);
+        -moz-box-shadow: -1px -1px 57px 22px rgba(0, 0, 0, 0.32);
     }
 
     .form-control:focus {
@@ -59,27 +69,7 @@
         filter: drop-shadow(4px 2px 13px gray);
     }
 
-    .region,
-    .province,
-    .municipality,
-    .barangay,
-    .citizenType,
-    .gender,
-    .birthDate,
-    #virtualIdNumber::placeholder {
-        color: gray;
-    }
-
-    #citizenType::placeholder {
-        color: green;
-    }
-
-
     .form-control::placeholder {
-        color: gray;
-    }
-
-    select::placeholder {
         color: gray;
     }
 

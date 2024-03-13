@@ -107,7 +107,6 @@ class ClientController extends Controller
         return redirect()->route('client.store')->with('submited', 'Application submitted successfully.');
     }
 
-    // Controller method for logging out client
     public function logout(Client $client, Request $request)
     {
         \Log::info('Request Headers:', $request->headers->all());

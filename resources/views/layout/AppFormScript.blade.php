@@ -1,12 +1,12 @@
-<script src="{{asset('script/bootstrap.js')}}"></script>
-<script src="{{asset('script/fontawesome-bd99322ebc.js')}}" crossorigin="anonymous"></script>
+<script src="{{ asset('script/bootstrap.js') }}"></script>
+<script src="{{ asset('script/fontawesome-bd99322ebc.js') }}" crossorigin="anonymous"></script>
 
 <!-- jQuery -->
-<script src="{{asset('script/jquery3.2.1.js')}}"></script>
+<script src="{{ asset('script/jquery3.2.1.js') }}"></script>
 <!-- Select2 -->
-<script src="{{asset('script/ajax-select2.vr4.0.6.js')}}"></script>
+<script src="{{ asset('script/ajax-select2.vr4.0.6.js') }}"></script>
 
-
+{{-- Select2 Multiple option selector --}}
 <script>
     $("#purpose").select2({
         placeholder: "  Select your purpose",
@@ -18,14 +18,16 @@
     })
 </script>
 
-<script>
+{{-- Submti button disabled automatically --}}
+{{-- <script>
     $(document).ready(function() {
         $('#submitButton').click(function() {
             $(this).prop('disabled', true);
             $('#submittForm').submit();
         });
     });
-</script>
+</script> --}}
+
 
 <script>
     function clearPlaceholder(input) {
@@ -40,9 +42,8 @@
     }
 </script>
 
-
+{{-- Application submitted succesfully alert --}}
 <script>
-    // Check if the submitted message exists
     document.addEventListener('DOMContentLoaded', function() {
         var submittedMessage = document.getElementById('submittedMessage').querySelector('.alert');
 
@@ -196,19 +197,14 @@
 <script>
     // Data Automatically uppercased
     function convertToUppercase(inputElement) {
-        // Get the current input value
         const inputValue = inputElement.value;
-
-        // Convert to uppercase
         const uppercaseValue = inputValue.toUpperCase();
-
-        // Set the converted value back to the input
         inputElement.value = uppercaseValue;
     }
 </script>
 
 <script>
-    // Disabling submit button  until checkbox is checked.
+    // Disabling submit button until checkbox is checked.
     $(document).ready(function() {
         $('#termsAndCondition').change(function() {
             if ($(this).is(':checked')) {
@@ -236,29 +232,124 @@
     });
 </script>
 
+{{-- Uncheckbox and disable submit button when edit button clicked --}}
 <script>
     document.getElementById('editBtn').addEventListener('click', function() {
-        // Uncheck the checkbox
         document.getElementById('termsAndCondition').checked = false;
-
-        // Disable the submit button
         document.getElementById('submitBtn').disabled = true;
     });
 </script>
 
+{{-- Validates if the year has 4 characters --}}
 <script>
     const birthDateInput = document.getElementById('birthDate');
 
     // Add an event listener to validate the input when the user changes the value
-    birthDateInput.addEventListener('input', function () {
+    birthDateInput.addEventListener('input', function() {
         const inputValue = birthDateInput.value;
         const year = inputValue.split('-')[0]; // Extract the year part
 
-        // Check if the year has exactly 4 characters
         if (year.length !== 4) {
             birthDateInput.setCustomValidity('Year must be 4 characters');
         } else {
-            birthDateInput.setCustomValidity(''); // Clear any previous validation message
+            birthDateInput.setCustomValidity('');
         }
     });
+</script>
+
+{{-- Placeholder gray to black when options selected --}}
+<script>
+    document.getElementById('clientType').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('region').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('province').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('municipality').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('barangay').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('gender').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('virtualIdNumber').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('birthDate').style.color = 'gray';
+
+    function changeColor(selectObj) {
+        if (selectObj.value) {
+            selectObj.style.color = "black";
+        } else {
+            selectObj.style.color = "gray";
+        }
+    }
 </script>
