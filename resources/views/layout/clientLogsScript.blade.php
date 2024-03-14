@@ -27,8 +27,7 @@
 
 <script>
     let previousData = [];
-    // This function fetches new data and updates the table
-    let lastFetchedId = null;
+
     function updateTable() {
         let table = document.querySelector('#clientLogs');
 
@@ -66,45 +65,25 @@
                         // Add the logout button
                         const logoutCell = document.createElement('td');
                         const logoutButton = document.createElement('input');
-                        const logoutBtn = document.querySelector('#logoutBtn');
                         logoutButton.type = 'submit';
                         logoutButton.value = 'Log out';
-                        logoutButton.className = 'rounded-10';
+                        logoutButton.className = 'btn btn-success rounded-10';
                         logoutButton.addEventListener('click', () => {
                             // Add your logout logic here
-                            const virtualIdNumber = row.querySelector('td:first-child').textContent;
-                            console.log(virtualIdNumber);
-                            const csrfToken = document.querySelector('meta[name="csrf-token"]')
-                                .getAttribute('content');
-                            console.log('CSRF Token:', csrfToken);
-
-
-                            fetch(`/clientLogs/logout/{client}`, {
-                                    method: 'put',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        // Include CSRF token for Laravel
-                                        'X-CSRF-TOKEN': document.querySelector(
-                                            'meta[name="csrf-token"]').getAttribute(
-                                            'content')
-                                    },
-                                    body: JSON.stringify({
-                                        virtualIdNumber
-                                    })
-                                })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Network response was not ok');
-                                    }
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    // Handle response data
-                                    console.log(data);
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                });
+                            $.ajax({
+                                url: '/clientLogs/logout/' + client
+                                    .id, // Assuming 'id' is the identifier for the client
+                                type: 'POST',
+                                data: {
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function(response) {
+                                    // Handle successful logout here, like updating the UI or showing a message
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    // Handle errors here
+                                }
+                            });
                         });
                         logoutCell.appendChild(logoutButton);
                         row.appendChild(logoutCell);
@@ -119,16 +98,13 @@
                     // Update previousData
                     previousData = data;
 
-                    // Call updateTable again after 3 seconds
-                    setTimeout(updateTable, 3000);
                 }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
-                setTimeout(updateTable, 3000);
             });
     }
-    // Call updateTable immediately when the page loads
+    setInterval(updateTable, 3000);
     updateTable();
 </script>
 

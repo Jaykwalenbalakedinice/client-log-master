@@ -9,7 +9,7 @@
 
     <link href="{{ asset('resources/bootstrap5.3.2/bootstrap.min.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="{{asset('css/client-Logs.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/client-Logs.css') }}">
     <title>Client Logs</title>
 
 </head>
@@ -19,7 +19,7 @@
     @include('client.SuccessModal')
     <div id="successMessage" class="overlay">
         @if (session()->has('success'))
-            <script src="{{asset('script/jquery-3.7.1.js')}}"></script>
+            <script src="{{ asset('script/jquery-3.7.1.js') }}"></script>
             <script>
                 $(window).on('load', function() {
                     $('#staticBackdrop').modal('show');
@@ -35,8 +35,7 @@
 
             <div class="row mb-3">
                 <div class="col-4 col-md-3 col-lg-2 col-sm-3" style="padding-right: 0px;">
-                    <a href="{{ route('client.applicationForm') }}"
-                        style="text-decoration: none; color: white;">
+                    <a href="{{ route('client.applicationForm') }}" style="text-decoration: none; color: white;">
                         <button class="btn btn-dark" id="newAppBtn">New
                             Application
                         </button>
@@ -52,7 +51,8 @@
             </div>
 
             <div class="table-responsive col-12">
-                <table class="table table-striped table-sm table-dark text-center table-hover" style="opacity: 0.85;" id="clientsTable">
+                <table class="table table-striped table-sm table-dark text-center table-hover" style="opacity: 0.85;"
+                    id="clientsTable">
                     <thead>
                         <tr>
                             <th id="log" class="col-2 pt-3 col-md-2">Virtual ID</th>
@@ -66,26 +66,16 @@
                     @foreach ($clients as $client)
                         @if (!$client->timeOut)
                             <tbody id="clientLogs">
-                                <tr data-client-id="{{ $client->id }}">
-                                    <td>{{ $client->virtualIdNumber }}</td>
-                                    <td>{{ $client->firstName }}</td>
-                                    <td>{{ $client->middleName }}</td>
-                                    <td>{{ $client->lastName }}</td>
-                                    <td>
-
-                                        <div class="row-1">
-                                            <div class="col col-1 col-md-12">
-                                                <form method="post"
-                                                    action="{{ route('client.logout', ['client' => $client->id]) }}">
-                                                    @csrf
-                                                    @method('post')
-                                                    
-                                                    <input type="submit" value="Log out"
-                                                        class="btn btn-success rounded-10" autocomplete="off">
-                                                </form>
-                                            </div>
+                                <tr>
+                                    <div class="row-1">
+                                        <div class="col col-1 col-md-12">
+                                            <form method="PUT"
+                                                action="{{ route('client.logout', ['client' => $client->id]) }}">
+                                                @csrf
+                                                @method('put')
+                                            </form>
                                         </div>
-                                    </td>
+                                    </div>
                                 </tr>
                             </tbody>
                         @endif

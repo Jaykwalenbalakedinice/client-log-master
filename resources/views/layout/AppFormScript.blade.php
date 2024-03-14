@@ -19,14 +19,14 @@
 </script>
 
 {{-- Submti button disabled automatically --}}
-{{-- <script>
+<script>
     $(document).ready(function() {
         $('#submitButton').click(function() {
             $(this).prop('disabled', true);
             $('#submittForm').submit();
         });
     });
-</script> --}}
+</script>
 
 
 <script>
