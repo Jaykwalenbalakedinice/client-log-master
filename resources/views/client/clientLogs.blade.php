@@ -61,24 +61,7 @@
                             <th id="log" class="col-2 pt-3 col-md-2"></th>
                         </tr>
                     </thead>
-                    {{-- Data in clientLogs disappear when logout button clickeds --}}
-                    @foreach ($clients as $client)
-                        @if (!$client->timeOut)
-                            <tbody id="clientLogs">
-                                <tr>
-                                    <div class="row-1">
-                                        <div class="col col-1 col-md-12">
-                                            <form method="PUT"
-                                                action="{{ route('client.logout', ['client' => $client->id]) }}">
-                                                @csrf
-                                                @method('put')
-                                            </form>
-                                        </div>
-                                    </div>
-                                </tr>
-                            </tbody>
-                        @endif
-                    @endforeach
+                    
                 </table>
             </div>
         </div>

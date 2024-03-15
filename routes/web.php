@@ -7,7 +7,7 @@ Route::get('/clientLogs', [ClientController::class, 'clientLogs'])->name('client
 Route::get('/clientLogs/applicationForm', [ClientController::class, 'applicationForm'])->name('client.applicationForm');
 Route::post('/clientLogs/applicationForm', [ClientController::class, 'store'])->name('client.store');
 Route::delete('/clientLogs/{client}/destroy', [ClientController::class, 'destroy'])->name('client.destroy');
-Route::post('clientLogs-logout', [ClientController::class, 'logout'])->name('client.logout');
+Route::post('/clientLogs-logout', [ClientController::class, 'logout'])->name('client.logs.out');
 
 Route::get('/api/clientLogs', [ClientController::class, 'getClientLogs']);
 Route::get('/api/clientLogsViewOnly', [ClientController::class, 'getViewClientLogs'])->name('client.clientLogsViewOnly');

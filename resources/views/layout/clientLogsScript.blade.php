@@ -25,7 +25,7 @@
     });
 </script>
 
-<script>
+<script type="module">
     let previousData = [];
 
     function updateTable() {
@@ -58,9 +58,9 @@
                         ['virtualIdNumber', 'firstName', 'middleName', 'lastName'].forEach(key => {
                             const cell = document.createElement('td');
                             cell.textContent = client[key];
+                            row.setAttribute("id", "row" + client.id)
                             row.appendChild(cell);
                         });
-
                         // Add the logout button
                         const logoutCell = document.createElement('td');
                         const logoutButton = document.createElement('input');
@@ -68,18 +68,22 @@
                         logoutButton.value = 'Log out';
                         logoutButton.className = 'btn btn-success';
                         logoutButton.addEventListener('click', () => {
-                            // Add your logout logic here
+                            // Add your logout logic 
+                            // alert('route("client.logs.out", ["id" => '+client.id +']');
                             $.ajax({
-                                url:  `/clientLogs-logout/${client.id}`, // Assuming 'id' is the identifier for the client
+                                url: "{{ route('client.logs.out')}}" ,// Assuming 'id' is the identifier for the client
                                 type: 'post',
                                 data: {
+                                     id: client.id,
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function(response) {
-                                    // Handle successful logout here, like updating the UI or showing a message
+                                    console.log(response.Message);
+                                    $('#row'+client.id).hide();
+                                    $('#SuccessModal').modal('show');
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
-                                    // Handle errors here
+                                   console.log('asdfa');
                                 }
                             });
                         });

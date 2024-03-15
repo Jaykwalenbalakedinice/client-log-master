@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Crypt;
 
 class ClientController extends Controller
@@ -109,15 +110,23 @@ class ClientController extends Controller
 
     public function logout(Client $client, Request $request)
     {
-        \Log::info('Request Headers:', $request->headers->all());
+        
+        try{
+            $a = DB::table('tbl_clientLogs')->where('id', $request->id)->update(['timeOut' => date('Y-m-d H:i:s ')]);
+            return response()->json(['Message' => $request->id],200);
+        }
+        catch(\Exception $e){   
+            return response()->json(['Message' => 'Error'],400);
+        }
+        // \Log::info('Request Headers:', $request->headers->all());
         
 
-        //Update the timeOut field in the database
-        $client->update(['timeOut' => Carbon::now()]);
-        auth()->logout();
+        // //Update the timeOut field in the database
+        // Client::where('id', $request->id)->update(['timeOut' => Carbon::now()]);
+        
 
-        // Get the virtual ID from the client
-        $virtualIdNumber = $client->virtualIdNumber;
+        // // Get the virtual ID from the client
+        // $virtualIdNumber = $client->virtualIdNumber;
 
         // Update the status of the virtual ID to 'available'
         DB::table('tbl_virtual_id')
@@ -128,7 +137,7 @@ class ClientController extends Controller
 
     public function getClientLogs()
     {
-        $clients = Client::whereNull('timeOut')->get();
+        $clients = Client::where('timeOut', null)->get();
         return response()->json($clients);
     }
 
