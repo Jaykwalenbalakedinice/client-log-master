@@ -61,19 +61,17 @@
                             row.appendChild(cell);
                         });
 
-
                         // Add the logout button
                         const logoutCell = document.createElement('td');
                         const logoutButton = document.createElement('input');
                         logoutButton.type = 'submit';
                         logoutButton.value = 'Log out';
-                        logoutButton.className = 'btn btn-success rounded-10';
+                        logoutButton.className = 'btn btn-success';
                         logoutButton.addEventListener('click', () => {
                             // Add your logout logic here
                             $.ajax({
-                                url: '/clientLogs/logout/' + client
-                                    .id, // Assuming 'id' is the identifier for the client
-                                type: 'POST',
+                                url:  `/clientLogs-logout/${client.id}`, // Assuming 'id' is the identifier for the client
+                                type: 'post',
                                 data: {
                                     _token: '{{ csrf_token() }}'
                                 },

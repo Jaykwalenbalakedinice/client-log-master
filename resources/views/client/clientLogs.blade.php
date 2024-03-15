@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ asset('resources/bootstrap5.3.2/bootstrap.min.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="{{ asset('css/client-Logs.css') }}">
     <title>Client Logs</title>
 
@@ -51,7 +50,7 @@
             </div>
 
             <div class="table-responsive col-12">
-                <table class="table table-striped table-sm table-dark text-center table-hover" style="opacity: 0.85;"
+                <table class="table table-striped table-sm table-dark text-center table-hover rounded-table" style="opacity: 0.85; border-radius: 20px;"
                     id="clientsTable">
                     <thead>
                         <tr>

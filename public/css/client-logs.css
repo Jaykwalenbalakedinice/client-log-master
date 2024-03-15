@@ -8,9 +8,22 @@ body {
     height: auto;
 }
 
-h1{
+h1 {
     font-family: fantasy;
-    letter-spacing: .5rem;
+    letter-spacing: 0.5rem;
+}
+
+#clientsTable thead tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+}
+#clientsTable thead tr:first-child th:last-child {
+    border-top-right-radius: 20px;
+}
+#clientsTable tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
+}
+#clientsTable tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
 }
 
 .table-striped thead tr,
@@ -21,7 +34,7 @@ h1{
     color: #fff;
     font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: .2rem;
+    letter-spacing: 0.2rem;
 }
 
 .table-striped tbody th,
@@ -32,9 +45,9 @@ h1{
     padding-top: 20px;
     font-weight: 300;
     border: none;
-    -webkit-transition: .3s all ease;
-    -o-transition: .3s all ease;
-    transition: .3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
 }
 
 .table-striped tbody th,
@@ -54,13 +67,13 @@ h1{
     font-size: 11px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: .2rem;
+    letter-spacing: 0.2rem;
 }
 
 .table-striped tbody tr {
-    -webkit-transition: .3s all ease;
-    -o-transition: .3s all ease;
-    transition: .3s all ease;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
 }
 
 .table-striped tbody tr:hover td,
