@@ -14,9 +14,9 @@
                 us create a trustworthy environment for all.
             </div>
             <div class="modal-footer">
+                <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="editBtn"
                     onclick="validate()">Edit</button>
-                <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>

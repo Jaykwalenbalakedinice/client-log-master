@@ -21,7 +21,6 @@ class ClientController extends Controller
 
     public function clientLogs()
     {
-
         $clients = Client::all();
         return view('client.clientLogs', ['clients' => $clients]);
     }
@@ -99,8 +98,6 @@ class ClientController extends Controller
             DB::table('tbl_client_purpose')->insert(['logsNumber' => $clientNumber, 'clientPurpose' => $purpose]);
         }
 
-
-
         $data['timeIn'] = Carbon::now();
         $data['series'] = Carbon::now()->year;
 
@@ -108,31 +105,21 @@ class ClientController extends Controller
         return redirect()->route('client.store')->with('submited', 'Application submitted successfully.');
     }
 
-    public function logout(Client $client, Request $request)
+    public function logout(Request $request)
     {
-        
-        try{
-            $a = DB::table('tbl_clientLogs')->where('id', $request->id)->update(['timeOut' => date('Y-m-d H:i:s ')]);
-            return response()->json(['Message' => $request->id],200);
+        try {
+            DB::table('tbl_clientLogs')->where('id', $request->id)->update(['timeOut' => date('Y-m-d H:i:s ')]);
+            $getVirtualId = DB::table('tbl_clientLogs')->where('id', $request->id)->first();
+            // Update the status of the virtual ID to 'available'
+            DB::table('tbl_virtual_id')
+                ->where('id_number', $getVirtualId->virtualIdNumber)
+                ->update(['status' => 'available']);
+                session('logsNumber', $getVirtualId->clientNumber);
+                return response()->json($getVirtualId->clientNumber);
+            // return redirect()->route('client.clientLogs')->with(['success' => 'Logged out successfully.', 'logsNumber' => $getVirtualId->clientNumber]);
+        } catch (\Exception $e) {
+            return response()->json(['Message' => 'Error'], 400);
         }
-        catch(\Exception $e){   
-            return response()->json(['Message' => 'Error'],400);
-        }
-        // \Log::info('Request Headers:', $request->headers->all());
-        
-
-        // //Update the timeOut field in the database
-        // Client::where('id', $request->id)->update(['timeOut' => Carbon::now()]);
-        
-
-        // // Get the virtual ID from the client
-        // $virtualIdNumber = $client->virtualIdNumber;
-
-        // Update the status of the virtual ID to 'available'
-        DB::table('tbl_virtual_id')
-            ->where('id_number', $virtualIdNumber)
-            ->update(['status' => 'available']);
-        return redirect()->route('client.clientLogs')->with(['success' => 'Logged out successfully.', 'logsNumber' => $client->clientNumber]);
     }
 
     public function getClientLogs()
@@ -146,6 +133,5 @@ class ClientController extends Controller
         $clients = Client::whereNull('timeOut')->get();
         return view('client.clientLogsViewOnly', ['clients' => $clients]);
     }
-
 }
 

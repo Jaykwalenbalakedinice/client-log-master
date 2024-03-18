@@ -46,7 +46,7 @@
                         <label class="label" for="emailAddress"> <strong>Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
                             placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
@@ -95,21 +95,21 @@
                         <label class="label" for="firstName"><strong>First Name</strong> </label>
                         <input type="text" name="firstName" id="firstName" value="" maxlength="50"
                             class="form-control" placeholder="Juan" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" oninput="convertToUppercase(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3" style="font-size: ">
                         <label class="label" for="middleName"> <strong>Middle Name (If Applicable)</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)">
+                            onblur="restorePlaceholder(this)" autocomplete="off" oninput="convertToUppercase(this)">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="lastName"> <strong>Last Name</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on" oninput="convertToUppercase(this)"
+                            onblur="restorePlaceholder(this)" autocomplete="off" oninput="convertToUppercase(this)"
                             required>
                     </div>
 
@@ -125,14 +125,14 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
                         <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
-                            class="form-control" autocomplete="on" onchange="changeColor(this)" required>
+                            class="form-control" autocomplete="off" onchange="changeColor(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="contact"> <strong>Mobile Number (Optional)</strong> </label>
                         <input type="tel" id="contact" class="form-control" name="contact" value=""
                             pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="on">
+                            onblur="restorePlaceholder(this)" autocomplete="off">
                     </div>
 
 

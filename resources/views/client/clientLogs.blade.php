@@ -33,17 +33,17 @@
         <div class="row">
 
             <div class="row mb-3">
-                <div class="col-4 col-md-3 col-lg-2 col-sm-3" style="padding-right: 0px;">
+                <div class="col-4 col-md-3 col-lg-2 col-sm-3 newAppBtn" style="padding-right: 0px;">
                     <a href="{{ route('client.applicationForm') }}" style="text-decoration: none; color: white;">
                         <button class="btn btn-dark" id="newAppBtn">New
                             Application
                         </button>
                     </a>
                 </div>
-                <div class="col-4 col-md-2 col-lg-1 col-sm-2" style="padding: 0px;">
+                <div class="col-4 col-md-2 col-lg-1 col-sm-2 viewBtn" style="padding-right: 0px;">
                     <a id="viewBtn" class="btn btn-dark px-4"><i class="fa-solid fa-eye-slash"></i></a>
                 </div>
-                <div class="col-4 col-md-5 col-lg-3" style="padding: 0px;">
+                <div class="col-4 col-md-5 col-lg-3 searchInput" style="padding: 0px;">
                     <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
                         placeholder="Enter Virtual ID">
                 </div>
