@@ -46,7 +46,7 @@
                         <label class="label" for="emailAddress"> <strong>Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
                             placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" autocomplete="off" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">

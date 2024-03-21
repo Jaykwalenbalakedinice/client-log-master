@@ -68,7 +68,7 @@ function updateTable() {
                     logoutButton.value = 'Log out';
                     logoutButton.className = 'btn btn-success logoutBtn';
                     logoutButton.addEventListener('click', () => {
-                        // Add your logout logic 
+                        // Add your logout logic
                         // alert('route("client.logs.out", ["id" => '+client.id +']');
                         $.ajax({
                             url: "{{ route('client.logs.out') }}", // Assuming 'id' is the identifier for the client
@@ -92,7 +92,7 @@ function updateTable() {
                     row.appendChild(logoutCell);
 
                     // Hide the logout button if view-only mode is active
-                    if ($('#viewBtn').is(':hidden')) {
+                    if ($('.newAppBtn').is(':hidden')) {
                         $(logoutButton).hide();
                     }
                     table.appendChild(row);

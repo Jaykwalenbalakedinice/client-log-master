@@ -64,10 +64,7 @@
     // var config = {
     //     cUrl: 'https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2019v2.json'
     // }
-
-    var config = {
-        cUrl: '/client-log-master/public/API-json/addressAPI.json'
-    }
+    var apiEndPoint = '/client-log-master/public/API-json/addressAPI.json';
 
     var regionSelect = document.querySelector('#region');
     provinceSelect = document.querySelector('#province'),
@@ -76,7 +73,6 @@
         barangaySelect = document.querySelector('#barangay')
 
     function loadRegions() {
-        let apiEndPoint = config.cUrl;
 
         fetch(apiEndPoint)
             .then(Response => Response.json())

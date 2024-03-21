@@ -58,7 +58,7 @@ class ClientController extends Controller
 
         $data = $request->validate([
             'clientNumber' => 'required',
-            'emailAddress' => 'required',
+            'emailAddress' => 'nullable',
             'region' => 'required',
             'province' => 'required',
             'municipality' => 'required',
