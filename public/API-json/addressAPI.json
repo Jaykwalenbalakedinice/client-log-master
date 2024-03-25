@@ -1,5 +1,5 @@
 {
-    "01": {
+    "REGION 1": {
       "region_name": "REGION I",
       "province_list": {
         "ILOCOS NORTE": {
@@ -3787,7 +3787,7 @@
         }
       }
     },
-    "02": {
+    "REGION 2": {
       "region_name": "REGION II",
       "province_list": {
         "BATANES": {
@@ -6495,7 +6495,7 @@
         }
       }
     },
-    "03": {
+    "REGION 3": {
       "region_name": "REGION III",
       "province_list": {
         "AURORA": {
@@ -10150,7 +10150,7 @@
         }
       }
     },
-    "4A": {
+    "REGION 4-A": {
       "region_name": "REGION IV-A",
       "province_list": {
         "BATANGAS": {
@@ -14762,7 +14762,7 @@
         }
       }
     },
-    "4B": {
+    "REGION 4-B": {
       "region_name": "REGION IV-B",
       "province_list": {
         "MARINDUQUE": {
@@ -16539,7 +16539,7 @@
         }
       }
     },
-    "05": {
+    "REGION 5": {
       "region_name": "REGION V",
       "province_list": {
         "ALBAY": {
@@ -20495,7 +20495,7 @@
         }
       }
     },
-    "06": {
+    "REGION 6": {
       "region_name": "REGION VI",
       "province_list": {
         "AKLAN": {
@@ -25107,7 +25107,7 @@
         }
       }
     },
-    "07": {
+    "REGION 7": {
       "region_name": "REGION VII",
       "province_list": {
         "BOHOL": {
@@ -28659,7 +28659,7 @@
         }
       }
     },
-    "08": {
+    "REGION 8": {
       "region_name": "REGION VIII",
       "province_list": {
         "BILIRAN": {
@@ -33650,7 +33650,7 @@
         }
       }
     },
-    "09": {
+    "REGION 09": {
       "region_name": "REGION IX",
       "province_list": {
         "ZAMBOANGA DEL NORTE": {
@@ -35810,7 +35810,7 @@
         }
       }
     },
-    "10": {
+    "REGION 10": {
       "region_name": "REGION X",
       "province_list": {
         "BUKIDNON": {
@@ -38229,7 +38229,7 @@
         }
       }
     },
-    "11": {
+    "REGION 11": {
       "region_name": "REGION XI",
       "province_list": {
         "COMPOSTELA VALLEY": {
@@ -39612,7 +39612,7 @@
         }
       }
     },
-    "12": {
+    "REGION 12": {
       "region_name": "REGION XII",
       "province_list": {
         "COTABATO (NORTH COT.)": {
@@ -40987,7 +40987,7 @@
         }
       }
     },
-    "13": {
+    "REGION 13": {
       "region_name": "REGION XIII",
       "province_list": {
         "AGUSAN DEL NORTE": {
